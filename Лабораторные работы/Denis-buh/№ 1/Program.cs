@@ -22,22 +22,25 @@ class Complex{
 
     // Гетер для действительной части
     public double get_x(){
-        return Math.Cos((this.org * Math.PI) / 180) * modl; 
+        double res = Math.Cos((this.org * Math.PI) / 180) * modl; 
+        if (Math.Abs(res) < 0.000000001){
+            return 0;
+        }
+        return res;
     }
 
     // Гетер для мнимой части
-    public double get_y(){
-        return Math.Sin((this.org * Math.PI) / 180) * modl; 
+    public double get_y(){ 
+        double res = Math.Sin((this.org * Math.PI) / 180) * modl; 
+        if (Math.Abs(res)  < 0.000000001){
+            return 0;
+        }
+        return res;
     }
 
     // Вывод в общем виде
     public string get(){
-        double x = this.get_x();
-        if (x < 0.000000001){x = 0;}
-        double y = this.get_y();
-        if (y < 0.000000001){y = 0;}
-
-        return $"{x} + {y} * i"; 
+        return $"{this.get_x()} + {this.get_y()} * i"; 
     }
 }
 
@@ -54,6 +57,5 @@ class Program{
         Console.WriteLine($"Действительная часть = {obj.get_x()}");
         Console.WriteLine($"Мнимая часть = {obj.get_y()}");
         Console.WriteLine($"Общий вид = {obj.get()}");
-
     }
 }
