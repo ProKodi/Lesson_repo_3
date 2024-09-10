@@ -26,10 +26,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-        org = new NumericUpDown();
         label1 = new Label();
         label2 = new Label();
-        modl = new NumericUpDown();
         label3 = new Label();
         label4 = new Label();
         label5 = new Label();
@@ -39,18 +37,9 @@
         x_number = new TextBox();
         y_number = new TextBox();
         to_calculate = new Button();
-        ((System.ComponentModel.ISupportInitialize)org).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)modl).BeginInit();
+        modl = new TextBox();
+        org = new TextBox();
         SuspendLayout();
-        // 
-        // org
-        // 
-        org.Location = new Point(114, 81);
-        org.Maximum = new decimal(new int[] { int.MaxValue, 0, 0, 0 });
-        org.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-        org.Name = "org";
-        org.Size = new Size(120, 23);
-        org.TabIndex = 0;
         // 
         // label1
         // 
@@ -69,15 +58,6 @@
         label2.Size = new Size(89, 15);
         label2.TabIndex = 2;
         label2.Text = "Модуль числа:";
-        // 
-        // modl
-        // 
-        modl.Location = new Point(114, 40);
-        modl.Maximum = new decimal(new int[] { int.MaxValue, 0, 0, 0 });
-        modl.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-        modl.Name = "modl";
-        modl.Size = new Size(120, 23);
-        modl.TabIndex = 3;
         // 
         // label3
         // 
@@ -158,11 +138,29 @@
         to_calculate.UseVisualStyleBackColor = true;
         to_calculate.Click += to_calculate_Click;
         // 
+        // modl
+        // 
+        modl.Location = new Point(114, 42);
+        modl.Name = "modl";
+        modl.Size = new Size(120, 23);
+        modl.TabIndex = 15;
+        modl.Text = "0";
+        // 
+        // org
+        // 
+        org.Location = new Point(114, 81);
+        org.Name = "org";
+        org.Size = new Size(120, 23);
+        org.TabIndex = 16;
+        org.Text = "0";
+        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(484, 311);
+        Controls.Add(org);
+        Controls.Add(modl);
         Controls.Add(to_calculate);
         Controls.Add(y_number);
         Controls.Add(x_number);
@@ -172,25 +170,18 @@
         Controls.Add(label5);
         Controls.Add(label4);
         Controls.Add(label3);
-        Controls.Add(modl);
         Controls.Add(label2);
         Controls.Add(label1);
-        Controls.Add(org);
         MinimumSize = new Size(500, 350);
         Name = "Form1";
         Text = "Буханов Д.Е. группа 3105об. Вариант 12";
-        ((System.ComponentModel.ISupportInitialize)org).EndInit();
-        ((System.ComponentModel.ISupportInitialize)modl).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
 
     #endregion
-
-    private NumericUpDown org;
     private Label label1;
     private Label label2;
-    private NumericUpDown modl;
     private Label label3;
     private Label label4;
     private Label label5;
@@ -200,4 +191,6 @@
     private TextBox x_number;
     private TextBox y_number;
     private Button to_calculate;
+    private TextBox modl;
+    private TextBox org;
 }
