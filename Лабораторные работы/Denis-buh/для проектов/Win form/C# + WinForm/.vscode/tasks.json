@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Win_prog.csproj",
+                "${workspaceFolder}/C# + WinForm.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Win_prog.csproj",
+                "${workspaceFolder}/C# + WinForm.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Win_prog.csproj"
+                "${workspaceFolder}/C# + WinForm.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

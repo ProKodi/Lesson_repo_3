@@ -1,99 +1,122 @@
+﻿
 
 
 
-
-// Класс реализующий основное окно
-public partial class Form1 : Form
-{
-    public Form1()
-    {
+partial class MainWindow : Form{
+    public MainWindow(){
         InitializeComponent();
     }
 
-    private void to_calculate_Click(object sender, EventArgs e)
-    {
-        double? tem_modl = null; 
-        double? tem_org = null; 
-        try{
-            tem_modl = Convert.ToDouble(modl.Text);
+    private Complex get_inform(){
+        double tem_modl = Convert.ToDouble(modl.Value);
+        double tem_arg = Convert.ToDouble(arg.Value);
+        return new Complex(tem_modl, tem_arg);
+    }
+
+    private void set_inform(Complex obj){
+        // Устанавливаем действительную часть
+        x_number.Text = Convert.ToString(obj.X);
+        // Устанавливаем комплексную часть
+        y_number.Text = Convert.ToString(obj.Y);
+        // Устанавливаем общий вид
+        number.Text = obj.ToString();
+    }
+
+    private void calculate_Click(object sender, EventArgs e){
+        Complex obj = this.get_inform();
+        this.set_inform(obj); 
+    }
+
+    private void calculate_new_Click(object sender, EventArgs e){
+        Complex obj = this.get_inform();
+        this.set_inform(obj);
+        ComplexApp compl;
+        int fun_number; 
+        {
+            AppendCompl form = new AppendCompl();
+            form.ShowDialog(this);
+            compl = form.Get_compl;
+            if (compl is null){
+                MessageBox.Show(
+                "Данные не были расчитаны поэтому дополнительное действие не выполнется",
+                "Дополнительное действие не выполнется",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return; 
+            }
+            fun_number = form.get_fun();
         }
-        catch (FormatException){
-            MessageBox.Show("В числе (модуле) не должно быть букв или вы не ввели число", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        catch (Exception){
-            MessageBox.Show("Произошла не известная ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        if (fun_number == 0){
+            MessageBox.Show(
+                $"Число {compl}, после применения декремента: {--compl}",
+                "Применение декримента",
+                MessageBoxButtons.OK, MessageBoxIcon.Information
+            );
         }
 
-        try{
-            tem_org = Convert.ToDouble(org.Text); 
+        if (fun_number == 1){
+            MessageBox.Show(
+                $"Число {compl}, после применения инкремента: {++compl}",
+                "Применение инкримента",
+                MessageBoxButtons.OK, MessageBoxIcon.Information
+            );
         }
-        catch (FormatException){
-            MessageBox.Show("В числе (аргументе) не должно быть букв или вы не ввели число", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        if (fun_number == 2){
+            if (obj.X == 0 && obj.Y == 0){
+                MessageBox.Show(
+                    $"Число в оригинальной форме = 0",
+                    "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error
+                );  
+                return; 
+            }
+            MessageBox.Show(
+                $"Число {compl} / {obj}, = {compl / obj}",
+                "Деление чисел",
+                MessageBoxButtons.OK, MessageBoxIcon.Information
+            );
         }
-        catch (Exception){
-            MessageBox.Show("Произошла не известная ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        if (fun_number == 3){
+            MessageBox.Show(
+                $"Число {compl} * {obj}, = {compl * obj}",
+                "Умножение чисел",
+                MessageBoxButtons.OK, MessageBoxIcon.Information
+            );
         }
-        
-        if ((tem_modl != null) &&  (tem_org != null)){
-            // Считываем модуль и аргумент и передаем это в конструктор класс для комплексных чисел
-            Complex obj = new Complex((double)tem_modl, (double)tem_org);
-            // Устанавливаем действительную часть
-            x_number.Text = Convert.ToString(obj.get_x()); 
-            // Устанавливаем комплексную часть
-            y_number.Text = Convert.ToString(obj.get_y()); 
-            // Устанавливаем общий вид
-            number.Text = obj.get(); 
+        if (fun_number == 4){
+            MessageBox.Show(
+                $"Число {compl} != {obj}, = {compl != obj}",
+                "Неравенство чисел",
+                MessageBoxButtons.OK, MessageBoxIcon.Information
+            );
         }
-        
+
+        if (fun_number == 5){
+            MessageBox.Show(
+                $"Число {compl} == {obj}, = {compl == obj}",
+                "Равенство чисел",
+                MessageBoxButtons.OK, MessageBoxIcon.Information
+            );
+        }
     }
 }
 
 
 
-public partial class Form2 : Form{
-    private void mode_random_true_CheckedChanged(object sender, EventArgs e)
-    {
-        groupBox2.Enabled = false;
-    }
-
-    private void mode_random_false_CheckedChanged(object sender, EventArgs e)
-    {
-        groupBox2.Enabled = true;
-    }
-
-    private void to_calculate_Click(object sender, EventArgs e)
-    {
-        Console.WriteLine($"modl = {modl.Value}"); 
-        Console.WriteLine($"org = {org.Value}"); 
-        Console.WriteLine($"arg_for_fun = {arg_for_fun.Value}"); 
-        
-
-        // ��������� ������ � �������� � �������� ��� � ����������� ����� ��� ����������� �����
-        //Complex obj = new Complex((double)modl.Text, (double)org.Text);
-        // ������������� �������������� �����
-        //x_number.Text = Convert.ToString(obj.get_x());
-        // ������������� ����������� �����
-        //y_number.Text = Convert.ToString(obj.get_y());
-        // ������������� ����� ���
-        //number.Text = obj.get();
-    }
-
-
-}
 
 
 
 static class Program
 {
     /// <summary>
-    ///  The main entry point for the application.
+    /// Главная точка входа для приложения.
     /// </summary>
     [STAThread]
     static void Main()
     {
-        // To customize application configuration such as set high DPI settings or default font,
-        // see https://aka.ms/applicationconfiguration.
-        ApplicationConfiguration.Initialize();
-        Application.Run(new Form1());
-    }    
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.Run(new MainWindow());
+    }
 }
+
