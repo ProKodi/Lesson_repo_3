@@ -48,7 +48,7 @@ class ComplexApp : Complex{
         // Если объект ссылается на пустое значение
         if (obj == null){return false;}
         // Если обьект не является нужным нам типом
-        if (obj is not ComplexApp){return false;}
+        if (obj is not Complex){return false;}
         // Если у обьектов не совпадают хеш коды
         if (this.GetHashCode() != obj.GetHashCode()){return false;}
         // Приводим сравниваемый экземпляр к нужному типу данных 
