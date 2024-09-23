@@ -598,7 +598,7 @@ partial class MainWindow{
         this.Controls.Add(this.tableLayoutPanel6);
         this.MinimumSize = new System.Drawing.Size(650, 400);
         this.Name = "MainWindow";
-        this.Text = "MainWindow";
+        this.Text = "Буханов Д.Е. группа 3105об. Вариант 12";
         this.tableLayoutPanel1.ResumeLayout(false);
         this.tableLayoutPanel1.PerformLayout();
         this.groupBox1.ResumeLayout(false);
