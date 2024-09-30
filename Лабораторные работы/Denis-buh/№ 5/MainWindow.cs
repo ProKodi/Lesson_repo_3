@@ -8,17 +8,17 @@ public partial class MainWindow : Form{
     private void show_Patient_Hospital_Click(object sender, EventArgs e){
         List <string> list = [
             (new Patient_Hospital(new DateOnly(2000, 10, 6), "мужчина", "Олегович",
-                "Олег", "098x80086", new DateOnly(2020, 10, 6))).ToString(),
+                "Олег", "098x80086", new DateOnly(2020, 10, 6))).toStr(),
             (new Patient_Hospital(new DateOnly(1999, 7, 6), "женщина", "Бомбат",
-                "Ольга", "028x8976", new DateOnly(2022, 10, 6))).ToString(),
+                "Ольга", "028x8976", new DateOnly(2022, 10, 6))).toStr(),
             (new Patient_Hospital(new DateOnly(2002, 8, 7), "мужчина", "Михалович",
-                "Михаил", "098x866", new DateOnly(2023, 10, 6))).ToString(),
+                "Михаил", "098x866", new DateOnly(2023, 10, 6))).toStr(),
             (new Patient_Hospital(new DateOnly(2001, 12, 6), "женщина", "Михалович",
-                "Аня", "098x8976", new DateOnly(2022, 10, 6))).ToString(),
+                "Аня", "098x8976", new DateOnly(2022, 10, 6))).toStr(),
             (new Patient_Hospital(new DateOnly(2001, 9, 26), "мужчина", "Бомбатович",
-                "Омуэл", "098x8976", new DateOnly(2022, 11, 26))).ToString(),
+                "Омуэл", "098x8976", new DateOnly(2022, 11, 26))).toStr(),
             (new Patient_Hospital(new DateOnly(2011, 12, 6), "женщина", "Олегович",
-                "Ина", "098x8236", new DateOnly(2024, 3, 2))).ToString(),
+                "Ина", "098x8236", new DateOnly(2024, 3, 2))).toStr(),
         ]; 
         ShowInform form = new ShowInform();
         form.AppendInform(list);

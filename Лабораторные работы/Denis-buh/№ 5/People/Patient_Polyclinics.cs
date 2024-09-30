@@ -22,6 +22,8 @@ class Patient_Polyclinics: Human{
         this.registration = registration; 
     }
 
+    public override string toStr(){return this.ToString(); }
+
     // Преобразование в строку + Вывод на экран
     public override string Inform(){
         return base.Inform() + $" Дата прохождения диспансеризации: {this.date_hospital}, " +

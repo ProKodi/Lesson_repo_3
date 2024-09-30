@@ -49,6 +49,8 @@ abstract class Human{
         return year; 
     }
 
+    public abstract string toStr();
+
     public override string ToString(){return this.Inform();}
 
     // Преобразование в строку + Вывод на экран

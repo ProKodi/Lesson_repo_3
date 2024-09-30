@@ -21,6 +21,8 @@ class Doctor: Human{
         this.post = post; 
     }
 
+    public override string toStr(){return this.ToString(); }
+
     // Преобразование в строку + Вывод на экран
     public override string Inform(){
         return base.Inform() + $" Специальность: {this.speciality}, " +
