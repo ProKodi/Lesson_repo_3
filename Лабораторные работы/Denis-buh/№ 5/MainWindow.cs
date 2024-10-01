@@ -3,7 +3,25 @@
 
 
 public partial class MainWindow : Form{
-    public MainWindow(){InitializeComponent();}
+    public MainWindow(){
+        InitializeComponent();
+    }
+
+    private void button1_Click(object sender, EventArgs e){
+        this.Close();
+    }
+
+    private void MainWindow_Load(object sender, EventArgs e)
+    {
+        System.Drawing.Drawing2D.GraphicsPath myPath =
+            new System.Drawing.Drawing2D.GraphicsPath();
+        // создаем эллипс с высотой и шириной формы
+        myPath.AddEllipse(0, 0, this.Width, this.Height);
+        // создаем с помощью элипса ту область формы, которую мы хотим видеть
+        Region myRegion = new Region(myPath);
+        // устанавливаем видимую область
+        this.Region = myRegion;
+    }
 
     private void show_Patient_Hospital_Click(object sender, EventArgs e){
         List <string> list = [
