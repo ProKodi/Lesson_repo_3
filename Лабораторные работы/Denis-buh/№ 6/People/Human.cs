@@ -9,14 +9,13 @@ interface IHuman{
     public string Surname{get;}
     public string Name{get;}
     public uint get_age();
-    public string toStr();
-    public string Inform();
+
 }
 
 
 
 // абстрактный класс Человек
-abstract class Human: IHuman{
+class Human: IHuman{
     protected DateOnly date_birth; // год рождения
     public DateOnly Date_birth{get{return this.date_birth;}}
 
@@ -44,7 +43,7 @@ abstract class Human: IHuman{
         this.name = obj.name;
     }
 
-    // вычисления возраста
+    // вычесления возраста
     public virtual uint get_age(){
         // Получение сегодняшней даты + Конвертация ее в DateOnly
         DateOnly now_date = DateOnly.FromDateTime(DateTime.Today);
@@ -62,12 +61,7 @@ abstract class Human: IHuman{
         return year; 
     }
 
-    public abstract string toStr();
-
-    public override string ToString(){return this.Inform();}
-
-    // Преобразование в строку + Вывод на экран
-    public virtual string Inform(){
+    public override string ToString(){
         return  $" Фамилия: {this.surname}, Имя: {this.name}, "
             + $"возраст (в годах): {this.get_age()}, " + 
             $"Дата рождения: {this.date_birth}, пол: {this.gender}";

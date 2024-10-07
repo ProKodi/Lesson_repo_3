@@ -40,11 +40,8 @@ class Patient_Hospital: Human, ICloneable, IComparable<Patient_Hospital>{
         return this.surname.CompareTo(other.surname);
     }
 
-    public override string toStr(){return this.ToString(); }
-
-    // Преобразование в строку + Вывод на экран
-    public override string Inform(){
-        return base.Inform() + $" Шифр болезни: {this.code_problem}, " +
+    public override string ToString(){
+        return base.ToString() + $" Шифр болезни: {this.code_problem}, " +
             $"Дата госпитализации: {this.date_hospital}"; 
     }
 }

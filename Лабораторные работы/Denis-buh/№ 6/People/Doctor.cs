@@ -40,11 +40,8 @@ class Doctor: Human, ICloneable, IComparable<Doctor>{
     }
 
 
-    public override string toStr(){return this.ToString(); }
-
-    // Преобразование в строку + Вывод на экран
-    public override string Inform(){
-        return base.Inform() + $" Специальность: {this.speciality}, " +
+    public override string ToString(){
+        return base.ToString() + $" Специальность: {this.speciality}, " +
             $"Должность: {this.post}"; 
     }
 }

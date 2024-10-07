@@ -124,17 +124,7 @@ public partial class MainWindow : Form{
         this.Close();
     }
 
-    private void MainWindow_Load(object sender, EventArgs e)
-    {
-        System.Drawing.Drawing2D.GraphicsPath myPath =
-            new System.Drawing.Drawing2D.GraphicsPath();
-        // создаем эллипс с высотой и шириной формы
-        myPath.AddEllipse(0, 0, this.Width, this.Height);
-        // создаем с помощью элипса ту область формы, которую мы хотим видеть
-        Region myRegion = new Region(myPath);
-        // устанавливаем видимую область
-        this.Region = myRegion;
-    }
+
 
     private void show_Patient_Hospital_Click(object sender, EventArgs e){
         List <Patient_Hospital> list = [
@@ -155,7 +145,7 @@ public partial class MainWindow : Form{
         Sorted.Sort(list, 0, list.Count-1);
         ShowInform form = new ShowInform();
         foreach (Patient_Hospital i in list){
-            form.AppendInform(i.toStr());
+            form.AppendInform(i.ToString());
         }
         form.ShowDialog(this);
 
@@ -186,7 +176,7 @@ public partial class MainWindow : Form{
         }
 
         foreach (Doctor i in list){
-            form.AppendInform(i.Inform());
+            form.AppendInform(i.ToString());
         }
         form.ShowDialog(this);
 
@@ -212,7 +202,7 @@ public partial class MainWindow : Form{
         ShowInform form = new ShowInform();
 
         foreach (Patient_Polyclinics i in list){
-            form.AppendInform(i.Inform());
+            form.AppendInform(i.ToString());
         }
         form.ShowDialog(this);
     }

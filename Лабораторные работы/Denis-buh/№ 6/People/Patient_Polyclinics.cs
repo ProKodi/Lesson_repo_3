@@ -40,11 +40,8 @@ class Patient_Polyclinics: Human, ICloneable, IComparable<Patient_Polyclinics>{
     }
 
 
-    public override string toStr(){return this.ToString(); }
-
-    // Преобразование в строку + Вывод на экран
-    public override string Inform(){
-        return base.Inform() + $" Дата прохождения диспансеризации: {this.date_hospital}, " +
+    public override string ToString(){
+        return base.ToString() + $" Дата прохождения диспансеризации: {this.date_hospital}, " +
             $"Диспансерный учет: {this.registration}"; 
     }
 }
