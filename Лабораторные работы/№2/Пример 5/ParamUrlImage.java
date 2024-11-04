@@ -1,41 +1,43 @@
-import java.applet.*;
+import java.applet.Applet;
 import java.awt.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class ParamUrlImage extends Applet{
     private String m_String_1 = "First string";
-    private String m_String_2 = "Second string";
-    private String FileName = "sample.gif";
-    private final String PARAM_String_1 = "String_1";
-    private final String PARAM_String_2= " String_2";
-    public ParamUrlImage(){ 
-        // Сделать: Добавьте сюда код конструктора
+    private final String PARAM_String_1 = "m_FileName";
+
+    public String getAppletInfo(){
+        return "Name: ParamUrlImage\r\n";
     }
 
-    public String getAppletInfo(){ 
-        return "Name: Applet\r\n" +"";
-    }
-
-    public String[][] getParameterInfo(){ 
+    public String[][] getParameterInfo(){
         String[][] info = {
-            {PARAM_String_1, "String", "Parameter description" },
-            {PARAM_String_2, "String", "Parameter description" },
-        }; 
+            { PARAM_String_1, "String", "Parameter description" }
+        };
         return info;
     }
 
-    public void init(){ 
+    Image Im;
+    public void init(){
         String param;
         param = getParameter(PARAM_String_1);
         if (param != null) m_String_1 = param;
-   
-        param = getParameter(PARAM_String_2);
-        if (param != null) m_String_2 = param;
         resize(320, 240);
+
+        try{ 
+            Im=getImage(new URL(getCodeBase(),m_String_1));
+        }
+        catch(MalformedURLException e){ 
+            Im=createImage(0,0); // создание пустого изображения
+        }
     }
-    
+
     public void destroy(){}
 
-    public void paint(Graphics g){}
+    public void paint(Graphics g){
+        g.drawImage(Im,0,0,this);
+    }
 
     public void start(){}
 
