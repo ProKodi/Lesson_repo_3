@@ -8,8 +8,6 @@ import java.awt.*;
 public class HelloApplet extends Applet{
     public HelloApplet(){}
 
-
-
     public String getAppletInfo(){
         return "Name: HelloApplet\r\n" + 
             "Created with JBuilder";
@@ -18,6 +16,7 @@ public class HelloApplet extends Applet{
     public void init(){
         resize(320, 240);
     }
+
 
     public void destroy(){}
 
