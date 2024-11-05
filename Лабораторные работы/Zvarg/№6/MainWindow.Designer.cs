@@ -74,6 +74,7 @@
             OutputBox.BorderStyle = BorderStyle.None;
             OutputBox.Dock = DockStyle.Fill;
             OutputBox.Font = new Font("Impact", 14F);
+            OutputBox.ForeColor = Color.Aquamarine;
             OutputBox.FormattingEnabled = true;
             OutputBox.HorizontalScrollbar = true;
             OutputBox.ItemHeight = 23;
