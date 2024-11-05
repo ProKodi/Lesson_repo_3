@@ -50,10 +50,18 @@ namespace _6_lab___C_
         {
             return new Fish(this);
         }
+        public static bool operator ==(Fish fish1, Fish fish2)
+        {
+            return fish1.name == fish2.name;
+        }
+        public static bool operator !=(Fish fish1, Fish fish2)
+        {
+            return !(fish1.name == fish2.name);
+        }
         public override int CompareTo(object? o)
         {
-                if (o is Fish fish) return name.CompareTo(fish.name);
-                else return 2;
+            if (o is Fish fish) return name.CompareTo(fish.name);
+            else return -2;
         }
     }
 }

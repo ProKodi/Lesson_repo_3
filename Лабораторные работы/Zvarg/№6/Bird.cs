@@ -71,7 +71,16 @@ namespace _6_lab___C_
         public override int CompareTo(object? o)
         {
             if (o is Bird bird) return name.CompareTo(bird.name);
-            else return 2;
+            else return -2;
+        }
+        public static bool operator ==(Bird bird1, Bird bird2)
+        {
+            return bird1.name == bird2.name;
+        }
+        public static bool operator !=(Bird bird1, Bird bird2)
+        {
+            return !(bird1.name == bird2.name);
         }
     }
 }
+

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,5 +22,14 @@ namespace _6_lab___C_
         }
         public abstract object Clone();
         public abstract int CompareTo(object? o);
+
+        public static bool operator== (Animal animal1, Animal animal2)
+            {
+            return animal1.name == animal2.name;
+            }
+        public static bool operator!= (Animal animal1, Animal animal2)
+            {
+            return !(animal1.name == animal2.name);
+            }
     }
 }
