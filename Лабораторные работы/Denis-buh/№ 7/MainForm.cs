@@ -8,21 +8,55 @@ partial class MainForm : Form{
     /// <summary>Метод для рисования графиков</summary>
     protected void paint_charts(PaintEventArgs e){
         Graphics g = e.Graphics;
-            int height = DisplayRectangle.Height; // Высота
-            int width = DisplayRectangle.Width; // Ширина
-    
+            int height = 600; // Высота
+            int width = 600; // Ширина
             {
-                (int, int) x =  (0, width / 2); 
-                (int, int) y =  (50, (height - 50) / 2); 
-                Console.WriteLine("first");
-                Console.WriteLine($"x = [{x.Item1}, {x.Item2}]; y = [{y.Item1}, {y.Item2}]");
-                Console.WriteLine($"x = {(x.Item1 + x.Item2) / 2} y = {(y.Item1 + y.Item2) / 2}");
-                Console.WriteLine($"x = {(x.Item2 - x.Item1) / 2} y = {(y.Item2 - y.Item1) / 2}");
+                (int, int) x =  (0, width / 2);  // Максимальный и минимальный x
+                (int, int) y =  (50, (height / 2) + 50); // Максимальный и минимальный y
                 First_Chart graf1 = new First_Chart(); 
                 graf1.Set_point0((x.Item1 + x.Item2) / 2, (y.Item1 + y.Item2) / 2); 
                 graf1.Set_radius((x.Item2 - x.Item1) / 2, (y.Item2 - y.Item1) / 2); 
-                graf1.K = 10; 
-                graf1.arg(1); 
+                graf1.Col = Color.Red;
+                graf1.Kof = 10; 
+                graf1.K = 2;
+                graf1.B = -2; 
+                graf1.Draw_Chart(ref g); 
+            }
+
+            {
+                (int, int) x =  ((width / 2) + 20, width + 20);  // Максимальный и минимальный x
+                (int, int) y =  (50, (height / 2) + 50); // Максимальный и минимальный y
+                Second_Chart graf1 = new Second_Chart(); 
+                graf1.Set_point0((x.Item1 + x.Item2) / 2, (y.Item1 + y.Item2) / 2); 
+                graf1.Set_radius((x.Item2 - x.Item1) / 2, (y.Item2 - y.Item1) / 2); 
+                graf1.Col = Color.Green;
+                graf1.Kof = 10; 
+                graf1.A = 2;
+                graf1.Draw_Chart(ref g); 
+            }
+
+            {
+                (int, int) x =  (0, width / 2);  // Максимальный и минимальный x
+                (int, int) y =  ((height / 2) + 70, height + 20); // Максимальный и минимальный y
+                Third_Chart graf1 = new Third_Chart(); 
+                graf1.Set_point0((x.Item1 + x.Item2) / 2, (y.Item1 + y.Item2) / 2); 
+                graf1.Set_radius((x.Item2 - x.Item1) / 2, (y.Item2 - y.Item1) / 2); 
+                graf1.Col = Color.Black;
+                graf1.Kof = 10; 
+                graf1.G = 2;
+                graf1.Draw_Chart(ref g); 
+            }
+            
+            {
+                (int, int) x =  ((width / 2) + 20, width + 20);  // Максимальный и минимальный x
+                (int, int) y =  ((height / 2) + 70, height + 20); // Максимальный и минимальный y
+                First_Chart graf1 = new First_Chart(); 
+                graf1.Set_point0((x.Item1 + x.Item2) / 2, (y.Item1 + y.Item2) / 2); 
+                graf1.Set_radius((x.Item2 - x.Item1) / 2, (y.Item2 - y.Item1) / 2); 
+                graf1.Col = Color.Yellow;
+                graf1.Kof = 10; 
+                graf1.K = 2;
+                graf1.B = -2; 
                 graf1.Draw_Chart(ref g); 
             }
             
