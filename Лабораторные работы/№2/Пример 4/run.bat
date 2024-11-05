@@ -1,2 +1,2 @@
 javac AppletWithParam.java
-appletviewer Params.html
+appletviewer AppletWithParam.html

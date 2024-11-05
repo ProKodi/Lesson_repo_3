@@ -11,7 +11,7 @@ public class MouseEvent2 extends Applet{
     // контекст отображения (интерфейс) изображения
     private Graphics OffscreenGraphics;
     public void init(){
-        resize(320, 240);
+        resize(700, 600);
         try{ 
             imageCur=getImage(new java.net.URL(getCodeBase(),"gg.gif"));
         }
