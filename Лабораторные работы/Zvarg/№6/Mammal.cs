@@ -40,7 +40,16 @@ namespace _6_lab___C_
         public override int CompareTo(object? o)
         {
             if (o is Mammal mammal) return name.CompareTo(mammal.name);
-            else return 2;
+            else return -2;
+        }
+        public static bool operator ==(Mammal mammal1, Mammal mammal2)
+        {
+            return mammal1.name == mammal2.name;
+        }
+        public static bool operator !=(Mammal mammal1, Mammal mammal2)
+        {
+            return !(mammal1.name == mammal2.name);
         }
     }
 }
+
