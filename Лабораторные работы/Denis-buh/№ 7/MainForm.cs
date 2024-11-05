@@ -10,7 +10,7 @@ partial class MainForm : Form{
         Graphics g = e.Graphics;
             int height = DisplayRectangle.Height; // Высота
             int width = DisplayRectangle.Width; // Ширина
-
+    
             {
                 (int, int) x =  (0, width / 2); 
                 (int, int) y =  (50, (height - 50) / 2); 
@@ -71,7 +71,7 @@ partial class MainForm : Form{
         //graf.Set_min_point(0, 0); 
         //graf.Set_max_point(400, 400); 
         graf.arg(1); 
-        graf.Draw_Chart(ref g); */
+        graf.Draw_Chart(ref g);*/
         /*Pen pen = new Pen(Color.Black, 1);
         g.DrawLine(pen, 0, 25, 10, 31);
         g.DrawLine(pen, 0, 25, 8, 900);*/
