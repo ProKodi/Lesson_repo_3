@@ -15,11 +15,11 @@ class Fields{
         this.arr[3] = new Field(new Point(x_len + 100, y_len + 100), new Point((x_len * 2) + 100, (y_len * 2) + 100), 40);
     }
 
-    public void Show(ref Graphics g){
-        this.arr[0].Show(ref g);
-        this.arr[1].Show(ref g);
-        this.arr[2].Show(ref g);
-        this.arr[3].Show(ref g);
+    public void DrawDrid(ref Graphics g){
+        this.arr[0].DrawDrid(ref g);
+        this.arr[1].DrawDrid(ref g);
+        this.arr[2].DrawDrid(ref g);
+        this.arr[3].DrawDrid(ref g);
     }
 
     public Field this[int index]{get{return this.arr[index];}}
