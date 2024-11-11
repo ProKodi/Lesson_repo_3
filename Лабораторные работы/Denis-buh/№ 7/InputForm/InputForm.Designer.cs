@@ -136,7 +136,7 @@ partial class InputForm
             this.charts_width.Dock = System.Windows.Forms.DockStyle.Fill;
             this.charts_width.Location = new System.Drawing.Point(198, 3);
             this.charts_width.Maximum = new decimal(new int[] {
-            20,
+            5,
             0,
             0,
             0});
@@ -291,12 +291,14 @@ partial class InputForm
             // 
             // g
             // 
-            this.g.AutoSize = true;
+            //this.g.AutoSize = true;
             this.g.Dock = System.Windows.Forms.DockStyle.Fill;
             this.g.Location = new System.Drawing.Point(3, 3);
             this.g.Name = "g";
-            this.g.Size = new System.Drawing.Size(41, 20);
+            this.g.Size = new System.Drawing.Size(60, 23);
             this.g.TabIndex = 9;
+            this.g.Maximum = 20;
+            this.g.Minimum = -20;
             // 
             // set_g
             // 
@@ -368,12 +370,14 @@ partial class InputForm
             // 
             // a
             // 
-            this.a.AutoSize = true;
+           // this.a.AutoSize = true;
             this.a.Dock = System.Windows.Forms.DockStyle.Fill;
             this.a.Location = new System.Drawing.Point(3, 3);
             this.a.Name = "a";
-            this.a.Size = new System.Drawing.Size(41, 20);
+            this.a.Size = new System.Drawing.Size(60, 23);
             this.a.TabIndex = 13;
+            this.a.Maximum = 20;
+            this.a.Minimum = -20;
             // 
             // set_a
             // 
@@ -473,12 +477,13 @@ partial class InputForm
             // 
             // r
             // 
-            this.r.AutoSize = true;
+            //this.r.AutoSize = true;
             this.r.Dock = System.Windows.Forms.DockStyle.Fill;
             this.r.Location = new System.Drawing.Point(3, 3);
             this.r.Name = "r";
-            this.r.Size = new System.Drawing.Size(41, 20);
+            this.r.Size = new System.Drawing.Size(60, 23);
             this.r.TabIndex = 28;
+            this.r.Maximum = 20;
             // 
             // set_r
             // 
@@ -553,12 +558,14 @@ partial class InputForm
             // 
             // b
             // 
-            this.b.AutoSize = true;
+            //this.b.AutoSize = true;
             this.b.Dock = System.Windows.Forms.DockStyle.Fill;
             this.b.Location = new System.Drawing.Point(3, 3);
             this.b.Name = "b";
-            this.b.Size = new System.Drawing.Size(41, 20);
+            this.b.Size = new System.Drawing.Size(60, 23);
             this.b.TabIndex = 19;
+            this.b.Maximum = 20;
+            this.b.Minimum = -20;
             // 
             // set_b
             // 
@@ -597,12 +604,14 @@ partial class InputForm
             // 
             // k
             // 
-            this.k.AutoSize = true;
+            //this.k.AutoSize = true;
             this.k.Dock = System.Windows.Forms.DockStyle.Fill;
             this.k.Location = new System.Drawing.Point(3, 3);
             this.k.Name = "k";
-            this.k.Size = new System.Drawing.Size(41, 20);
+            this.k.Size = new System.Drawing.Size(60, 23);
             this.k.TabIndex = 24;
+            this.k.Maximum = 20;
+            this.k.Minimum = -20;
             // 
             // set_k
             // 

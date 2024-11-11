@@ -57,7 +57,7 @@ public partial class InputForm : Form{
     protected void set_random(ref NumericUpDown widget){
         Random rend = new Random(); 
         int number =  rend.Next(); 
-        widget.Value = (number + widget.Minimum) % widget.Maximum; 
+        widget.Value = (number % (widget.Maximum - widget.Minimum + 1)) + widget.Minimum; 
 
     }
 
