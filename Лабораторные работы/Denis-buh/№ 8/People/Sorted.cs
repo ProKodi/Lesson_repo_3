@@ -41,40 +41,6 @@ static class Sorted{
 }
 
 static class Exemple{
-    public static List <Patient_Hospital> Get_Patient_Hospital(){
-        return [
-            new Patient_Hospital(new DateOnly(2000, 10, 6), "мужчина", "Олегович",
-                "Олег", "098x80086", new DateOnly(2020, 10, 6)),
-            new Patient_Hospital(new DateOnly(1999, 7, 6), "женщина", "Бомбат",
-                "Ольга", "028x8976", new DateOnly(2022, 10, 6)),
-            new Patient_Hospital(new DateOnly(2002, 8, 7), "мужчина", "Михалович",
-                "Михаил", "098x866", new DateOnly(2023, 10, 6)),
-            new Patient_Hospital(new DateOnly(2001, 12, 6), "женщина", "Михалович",
-                "Аня", "098x8976", new DateOnly(2022, 10, 6)),
-            new Patient_Hospital(new DateOnly(2001, 9, 26), "мужчина", "Бомбатович",
-                "Омуэл", "098x8976", new DateOnly(2022, 11, 26)),
-            new Patient_Hospital(new DateOnly(2011, 12, 6), "женщина", "Олегович",
-                "Ина", "098x8236", new DateOnly(2024, 3, 2)),
-        ]; 
-    }
-
-    public static List <Doctor> Get_Doctor(){
-        return [
-            new Doctor(new DateOnly(2000, 10, 6), "мужчина", "Олегович",
-                "Олег", "Терапевт", "врач обыкновенный"),
-            new Doctor(new DateOnly(1999, 7, 6), "женщина", "Бомбат",
-                "Ольга", "Хирург", "глав-врач"),
-            new Doctor(new DateOnly(2002, 8, 7), "мужчина", "Михалович",
-                "Михаил", "Дерматолог", "заместитель главного врача"),
-            new Doctor(new DateOnly(2001, 12, 6), "женщина", "Михалович",
-                "Аня", "Нарколог", "врач нарколог"),
-            new Doctor(new DateOnly(2001, 9, 26), "мужчина", "Бомбатович",
-                "Омуэл", "Фельшер", "медбрат"),
-            new Doctor(new DateOnly(2011, 12, 6), "женщина", "Олегович",
-                "Ина", "Окулист", "заведующая"),
-        ]; 
-    }
-
     public static List <Patient_Polyclinics> Get_Patient_Polyclinics(){
         return [
             new Patient_Polyclinics(new DateOnly(2000, 10, 6), "мужчина", "Олегович",

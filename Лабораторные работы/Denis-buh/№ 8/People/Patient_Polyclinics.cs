@@ -1,7 +1,8 @@
 
 
 
-// Делегат для всякого
+
+// Делегат
 delegate string Fun(Patient_Polyclinics self);
 
 
@@ -11,8 +12,14 @@ class Patient_Polyclinics: Human{
     public DateOnly Date_hospital{get{return this.date_hospital;}}
     protected bool registration = false; // диспансерный учет (да, нет)
     public bool Registration{get{return this.registration;}}
+
     // Событие для класса
-    public event Fun? GetInform;
+    public event Fun get_inf = (Patient_Polyclinics self) => {return self.ToString();};
+
+    public event Fun Inform{
+        add{this.get_inf = value;}
+        remove{ this.get_inf = (Patient_Polyclinics self) => {return self.ToString();}; }
+    }
     
 
     public Patient_Polyclinics(DateOnly date_birth, string gender, 
@@ -43,15 +50,21 @@ class Patient_Polyclinics: Human{
             $"Диспансерный учет: {this.registration}"; 
     }
 
-    public void get_inform(){
-        if(this.GetInform is not Fun){return;}
-        this.GetInform(this);
+    public string get_inform(){
+        if(this.get_inf is not Fun){
+            throw new ArgumentException(); 
+        }
+        return this.get_inf(this);
     }
 }
 
 
 class NewClass{
-    public static string GetInform(Patient_Polyclinics self){
-        return self.ToString();
+    public static string GetSN(Patient_Polyclinics self){
+        return  $"{{Фамилия: {self.Surname}, Имя: {self.Name}}}";
+    }
+
+    public static string GetSNR(Patient_Polyclinics self){
+        return  $"{{Фамилия: {self.Surname}, Имя: {self.Name}, Диспансерный учет: {self.Registration}}}";
     }
 }
