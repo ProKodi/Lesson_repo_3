@@ -66,7 +66,7 @@ partial class MainForm: Form{
             }
 
             int age = form.Age_find;
-            if (name != ""){
+            {
                 Stack<Student> temp = Stack_Student.get_obj().select_age(age);
                 while(temp.Count > 0){
                     Student stude = temp.Pop();
