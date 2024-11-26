@@ -24,7 +24,6 @@ class Field{
             (finish.X - start.X) / 2, 
             (finish.Y - start.Y) / 2
         );
-
         this.kof = kof; 
     }
 
@@ -43,30 +42,24 @@ class Field{
 
     }
 
-    public void Show(ref Graphics g, bool flag_drid = true){
-        //g.Clear(Color.White); 
-        if(flag_drid){this.DrawDrid(ref g); }
-    }
-    
 
 
     /// <summary>Рисование линии</summary>
-    public void DrawLine(ref Graphics g, FPoint start, FPoint end, Color? colr = null){
+    public void DrawLine(ref Graphics g, FPoint start, FPoint end, int charts_width = 1, Color? colr = null){
         if(colr == null){colr = Color.Black;}
         start *= this.kof; 
-        start += (this.start + this.zero);
+        start = new FPoint(this.start.X + this.zero.X + start.X,
+            this.start.Y + this.zero.Y - start.Y
+        );
         end *= this.kof; 
-        end += (this.start + this.zero);
-        
+        end = new FPoint(this.start.X + this.zero.X + end.X,
+            this.start.Y + this.zero.Y - end.Y
+        );
         if(start < this.start || start > this.finish){return;}
         if(end < this.start || end > this.finish){return;}
-
-        Pen pen = new Pen((Color)colr, 2);
-
+        Pen pen = new Pen((Color)colr, charts_width);
         g.DrawLine(pen, (int)start.X, (int)start.Y, (int)end.X, (int)end.Y);
     }
-
-    
 
     public override string ToString(){
         return $"start point: [{this.start.X}, {this.start.Y}] end point: [{this.finish.X}, {this.finish.Y}] zero: [{this.zero.X}, {this.zero.Y}]"; 
