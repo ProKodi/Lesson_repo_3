@@ -57,4 +57,35 @@ class Student{
         this.Name_group = name_group;
         this.Hp = hp;
     }
+
+    public override string ToString(){
+        return $"{{Name: {this.name}, Age: {this.age}, Number_cout: {this.number_cout}, " + 
+            $"Name_group: {this.name_group}, Hp: {this.hp}}}";
+    }
+
+    public override int GetHashCode(){
+        return this.name.GetHashCode() ^ this.age.GetHashCode() ^ this.number_cout.GetHashCode() 
+            ^ this.name_group.GetHashCode() ^ this.hp.GetHashCode();
+    }
+
+    public static bool operator==(Student self, Student oth){
+        if(self.GetHashCode() != oth.GetHashCode()){return false;}
+        if(self.Name != oth.Name || self.Age != oth.Age || self.Number_cout == oth.Number_cout ||  
+            self.Name_group == oth.Name_group || self.Hp == oth.Hp
+        ){return false;}
+        return true;
+    }
+
+    public static bool operator!=(Student self, Student oth){
+        if(self.GetHashCode() != oth.GetHashCode()){return true;}
+        if(self.Name != oth.Name || self.Age != oth.Age || self.Number_cout != oth.Number_cout ||  
+            self.Name_group != oth.Name_group || self.Hp != oth.Hp
+        ){return true;}
+        return false;
+    }
+
+    public override bool Equals(object? other){
+        if(other is not Student) {return false;}
+        return this == (Student)other;
+    }
 }
