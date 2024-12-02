@@ -37,7 +37,7 @@ class Stack_Student{
 
     public Stack<Student> select_age(int age){
         var new_list = (from i in this.students
-            where i.Age > age
+            where i.Age >= age
             select i
         );
         Stack<Student> temp = new Stack<Student>();
