@@ -47,13 +47,13 @@ partial class MainForm: Form{
 
 
     private void filtration_item_Click(object sender, EventArgs e){
-        Console.WriteLine("Filtration colection");
         Filter form = new Filter();
         form.ShowDialog(this);
         this.TableTree.Rows.Clear();
         if(form.filter){
 
-            string name = form.Name_find;
+            string name = form.Name_find.Trim();
+            Console.WriteLine($"{{{name}}}");
             if (name != ""){
                 Stack<Student> temp = Stack_Student.get_obj().select_name(name);
                 while(temp.Count > 0){
@@ -65,8 +65,8 @@ partial class MainForm: Form{
                 return;
             }
 
-            int age = form.Age_find;
-            {
+            else{
+                int age = form.Age_find;
                 Stack<Student> temp = Stack_Student.get_obj().select_age(age);
                 while(temp.Count > 0){
                     Student stude = temp.Pop();
@@ -80,11 +80,11 @@ partial class MainForm: Form{
         
         else{
             Stack<Student> temp = Stack_Student.get_obj().Students;
-                while(temp.Count > 0){
-                    Student stude = temp.Pop();
-                    this.TableTree.Rows.Add(new object[]{stude.Name, stude.Age, 
-                        stude.Number_cout, stude.Name_group, stude.Hp
-                    });
+            while(temp.Count > 0){
+                Student stude = temp.Pop();
+                this.TableTree.Rows.Add(new object[]{stude.Name, stude.Age, 
+                    stude.Number_cout, stude.Name_group, stude.Hp
+                });
             }
         }
     }
