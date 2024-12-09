@@ -2,10 +2,10 @@
 
 
 
-partial class Filter : Form{
-    public Filter(){
-        InitializeComponent();
-    }
+partial class Filter2 : Form{
+    public Filter2(){InitializeComponent();}
+
+    public int Age_find{get{return (int)this.age_find.Value;}}
 
     public Filter_Function? fultrete = null; 
 
@@ -14,8 +14,6 @@ partial class Filter : Form{
             this.fultrete(); 
         }
     }
-
-    public string Name_find{get{return this.name_find.Text;}}
     
 }
 

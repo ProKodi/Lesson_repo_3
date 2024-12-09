@@ -6,11 +6,9 @@
 class Stack_Student{
     protected Stack<Student> students;
 
-    public Stack<Student> Students{get{return this.students;}}
+    public Stack<Student> Students{get{return new Stack<Student>(this.students);}}
 
-    protected Stack_Student(){
-        this.students = new Stack<Student>();
-    }
+    protected Stack_Student(){this.students = new Stack<Student>();}
 
     protected static Stack_Student? self = null;
 
@@ -23,19 +21,10 @@ class Stack_Student{
     /// <param name="obj"></param>
     public void append(Student obj){students.Push(obj);}
 
-    public void delete(int index){
-        if(index >= this.students.Count) {throw new ArgumentOutOfRangeException();}
-        Stack<Student> temp = new Stack<Student>();
-        for(int i = 0; i < index; i += 1){
-            temp.Push(this.students.Pop());
-        }
-        this.students.Pop();
-        while(temp.Count > 0){
-            this.students.Push(temp.Pop());
-        }
-    }
+    public void delete(){this.students.Pop();}
 
     public Stack<Student> select_age(int age){
+        //Stack<Student> temp = new Stack<Student>(this.students); 
         var new_list = (from i in this.students
             where i.Age >= age
             select i

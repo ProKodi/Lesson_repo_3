@@ -2,10 +2,25 @@
 
 
 
+delegate void Change_Function(Student stude);
+delegate void Filter_Function();
+
+
+
 partial class MainForm: Form{
     public MainForm(){
         InitializeComponent();
         Stack_Student.get_obj();
+    }
+    
+    /// <summary>Перерисовка таблицы</summary>
+    void refresh_table(){
+        this.TableTree.Rows.Clear();
+        Stack<Student> temp = Stack_Student.get_obj().Students;
+        while(temp.Count > 0){
+            Student stude = temp.Pop();
+            this.TableTree.Rows.Add(new object[]{stude.Name, stude.Age, stude.Number_cout, stude.Name_group, stude.Hp});
+        }
     }
 
     /// <summary>Добавление данных</summary>
@@ -13,20 +28,18 @@ partial class MainForm: Form{
         Input.InputForm form = new Input.InputForm();
         form.append_function = (Student stude) =>{
             Stack_Student.get_obj().append(stude);
-            this.TableTree.Rows.Add(new object[]{stude.Name, stude.Age, 
-                    stude.Number_cout, stude.Name_group, stude.Hp
-                }
-            );
+            this.refresh_table();
         }; 
         form.ShowDialog(this);
     }
 
     /// <summary>Удаление данных с таблицы и структуры</summary>
     private void delete_item_Click(object sender, EventArgs e){
-        int index = this.TableTree.CurrentCell.RowIndex;
-        Stack_Student.get_obj().delete(index);
-        this.TableTree.Rows.RemoveAt(index);
-        this.TableTree.Refresh();
+        try{
+            Stack_Student.get_obj().delete();
+            this.refresh_table();
+        }
+        catch{MessageBox.Show("Нечего удалять", "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
     }
 
     private void find_item_Click(object sender, EventArgs e){
@@ -48,44 +61,35 @@ partial class MainForm: Form{
 
     private void filtration_item_Click(object sender, EventArgs e){
         Filter form = new Filter();
-        form.ShowDialog(this);
-        this.TableTree.Rows.Clear();
-        if(form.filter){
 
-            string name = form.Name_find.Trim();
-            Console.WriteLine($"{{{name}}}");
-            if (name != ""){
-                Stack<Student> temp = Stack_Student.get_obj().select_name(name);
-                while(temp.Count > 0){
-                    Student stude = temp.Pop();
-                    this.TableTree.Rows.Add(new object[]{stude.Name, stude.Age, 
-                        stude.Number_cout, stude.Name_group, stude.Hp
-                    });
-                }
-                return;
-            }
-
-            else{
-                int age = form.Age_find;
-                Stack<Student> temp = Stack_Student.get_obj().select_age(age);
-                while(temp.Count > 0){
-                    Student stude = temp.Pop();
-                    this.TableTree.Rows.Add(new object[]{stude.Name, stude.Age, 
-                        stude.Number_cout, stude.Name_group, stude.Hp
-                    });
-                }
-                return;
-            }
-        }
-        
-        else{
-            Stack<Student> temp = Stack_Student.get_obj().Students;
+        form.fultrete = () => {
+            this.TableTree.Rows.Clear();
+            Stack<Student> temp = Stack_Student.get_obj().select_name(form.Name_find.Trim());
             while(temp.Count > 0){
                 Student stude = temp.Pop();
-                this.TableTree.Rows.Add(new object[]{stude.Name, stude.Age, 
-                    stude.Number_cout, stude.Name_group, stude.Hp
-                });
+                this.TableTree.Rows.Add(new object[]{stude.Name, stude.Age, stude.Number_cout, stude.Name_group, stude.Hp});
             }
-        }
+        };
+
+        form.ShowDialog(this);
+    }
+
+    private void filtration_item2_Click(object sender, EventArgs e){
+        Filter2 form = new Filter2();
+
+        form.fultrete = () => {
+            this.TableTree.Rows.Clear();
+            Stack<Student> temp = Stack_Student.get_obj().select_age(form.Age_find);
+            while(temp.Count > 0){
+                Student stude = temp.Pop();
+                this.TableTree.Rows.Add(new object[]{stude.Name, stude.Age, stude.Number_cout, stude.Name_group, stude.Hp});
+            }
+        };
+        form.ShowDialog(this);
+    }
+
+    private void filtration_item3_Click(object sender, EventArgs e){
+        this.TableTree.Rows.Clear();
+        this.refresh_table(); 
     }
 }
