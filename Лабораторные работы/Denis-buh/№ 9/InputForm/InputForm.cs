@@ -2,11 +2,6 @@
 
 
 
-delegate void Change_Function(Student stude); 
-
-
-
-
 static partial class Input{
 
 

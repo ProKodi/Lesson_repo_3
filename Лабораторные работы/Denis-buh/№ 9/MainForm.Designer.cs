@@ -34,6 +34,8 @@ partial class MainForm{
         this.delete_item = new System.Windows.Forms.Button();
         this.find_item = new System.Windows.Forms.Button();
         this.filtration_item = new System.Windows.Forms.Button();
+        this.filtration_item2 = new System.Windows.Forms.Button();
+        this.filtration_item3 = new System.Windows.Forms.Button();
         this.TableTree = new System.Windows.Forms.DataGridView();
         this.Name_table = new System.Windows.Forms.DataGridViewTextBoxColumn();
         this.Age_table = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,6 +102,32 @@ partial class MainForm{
         this.filtration_item.Text = "Фильтрация коллекции";
         this.filtration_item.UseVisualStyleBackColor = true;
         this.filtration_item.Click += new System.EventHandler(this.filtration_item_Click);
+        // 
+        // filtration_item2
+        // 
+        this.filtration_item2.AutoSize = true;
+        this.filtration_item2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+        this.filtration_item2.Dock = System.Windows.Forms.DockStyle.Fill;
+        this.filtration_item2.Location = new System.Drawing.Point(435, 3);
+        this.filtration_item2.Name = "filtration_item2";
+        this.filtration_item2.Size = new System.Drawing.Size(140, 23);
+        this.filtration_item2.TabIndex = 4;
+        this.filtration_item2.Text = "Фильтрация коллекции2";
+        this.filtration_item2.UseVisualStyleBackColor = true;
+        this.filtration_item2.Click += new System.EventHandler(this.filtration_item2_Click);
+        // 
+        // filtration_item3
+        // 
+        this.filtration_item3.AutoSize = true;
+        this.filtration_item3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+        this.filtration_item3.Dock = System.Windows.Forms.DockStyle.Fill;
+        this.filtration_item3.Location = new System.Drawing.Point(435, 3);
+        this.filtration_item3.Name = "filtration_item3";
+        this.filtration_item3.Size = new System.Drawing.Size(140, 23);
+        this.filtration_item3.TabIndex = 5;
+        this.filtration_item3.Text = "Вывести оригинальную коллекцию";
+        this.filtration_item3.UseVisualStyleBackColor = true;
+        this.filtration_item3.Click += new System.EventHandler(this.filtration_item3_Click);
         // 
         // TableTree
         // 
@@ -169,7 +197,7 @@ partial class MainForm{
         // 
         this.tableLayoutPanel1.AutoSize = true;
         this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-        this.tableLayoutPanel1.ColumnCount = 4;
+        this.tableLayoutPanel1.ColumnCount = 6;
         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
         this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -177,6 +205,8 @@ partial class MainForm{
         this.tableLayoutPanel1.Controls.Add(this.append_item, 0, 0);
         this.tableLayoutPanel1.Controls.Add(this.delete_item, 1, 0);
         this.tableLayoutPanel1.Controls.Add(this.filtration_item, 3, 0);
+        this.tableLayoutPanel1.Controls.Add(this.filtration_item2, 4, 0);
+        this.tableLayoutPanel1.Controls.Add(this.filtration_item3, 5, 0);
         this.tableLayoutPanel1.Controls.Add(this.find_item, 2, 0);
         this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
         this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 129);
@@ -229,6 +259,8 @@ partial class MainForm{
     private System.Windows.Forms.Button delete_item;
     private System.Windows.Forms.Button find_item;
     private System.Windows.Forms.Button filtration_item;
+    private System.Windows.Forms.Button filtration_item2;
+    private System.Windows.Forms.Button filtration_item3;
     private System.Windows.Forms.DataGridView TableTree;
     private System.Windows.Forms.DataGridViewTextBoxColumn Name_table;
     private System.Windows.Forms.DataGridViewTextBoxColumn Age_table;

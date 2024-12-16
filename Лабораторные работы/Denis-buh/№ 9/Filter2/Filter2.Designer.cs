@@ -1,5 +1,5 @@
 ﻿
-partial class Filter
+partial class Filter2
 {
     /// <summary>
     /// Обязательная переменная конструктора.
@@ -27,24 +27,15 @@ partial class Filter
     /// </summary>
     private void InitializeComponent()
     {
-        this.label1 = new System.Windows.Forms.Label();
         this.groupBox1 = new System.Windows.Forms.GroupBox();
-        this.name_find = new System.Windows.Forms.TextBox();
+        this.label2 = new System.Windows.Forms.Label();
+        this.age_find = new System.Windows.Forms.NumericUpDown();
         this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
         this.made_sort = new System.Windows.Forms.Button();
         this.groupBox1.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)(this.age_find)).BeginInit();
         this.tableLayoutPanel2.SuspendLayout();
         this.SuspendLayout();
-        // 
-        // label1
-        // 
-        this.label1.AutoSize = true;
-        this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-        this.label1.Location = new System.Drawing.Point(3, 0);
-        this.label1.Name = "label1";
-        this.label1.Size = new System.Drawing.Size(200, 26);
-        this.label1.TabIndex = 4;
-        this.label1.Text = "Введите имя (проверка на равенство)";
         // 
         // groupBox1
         // 
@@ -57,15 +48,27 @@ partial class Filter
         this.groupBox1.Size = new System.Drawing.Size(583, 102);
         this.groupBox1.TabIndex = 5;
         this.groupBox1.TabStop = false;
-        this.groupBox1.Text = "Фильтриция по имени";
+        this.groupBox1.Text = "Фильтрация по возрасту";
+
         // 
-        // name_find
+        // label2
         // 
-        this.name_find.Dock = System.Windows.Forms.DockStyle.Fill;
-        this.name_find.Location = new System.Drawing.Point(209, 3);
-        this.name_find.Name = "name_find";
-        this.name_find.Size = new System.Drawing.Size(365, 20);
-        this.name_find.TabIndex = 6;
+        this.label2.AutoSize = true;
+        this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+        this.label2.Location = new System.Drawing.Point(3, 26);
+        this.label2.Name = "label2";
+        this.label2.Size = new System.Drawing.Size(200, 26);
+        this.label2.TabIndex = 7;
+        this.label2.Text = "Возраст  пользователя";
+        // 
+        // age_find
+        // 
+        this.age_find.AutoSize = true;
+        this.age_find.Dock = System.Windows.Forms.DockStyle.Fill;
+        this.age_find.Location = new System.Drawing.Point(209, 29);
+        this.age_find.Name = "age_find";
+        this.age_find.Size = new System.Drawing.Size(365, 20);
+        this.age_find.TabIndex = 8;
         // 
         // tableLayoutPanel2
         // 
@@ -74,8 +77,8 @@ partial class Filter
         this.tableLayoutPanel2.ColumnCount = 2;
         this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
         this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-        this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-        this.tableLayoutPanel2.Controls.Add(this.name_find, 1, 0);
+        this.tableLayoutPanel2.Controls.Add(this.age_find, 1, 1);
+        this.tableLayoutPanel2.Controls.Add(this.label2, 0, 1);
         this.tableLayoutPanel2.Controls.Add(this.made_sort, 0, 2);
         this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
         this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
@@ -108,6 +111,7 @@ partial class Filter
         this.Text = "Поиск элемента";
         this.groupBox1.ResumeLayout(false);
         this.groupBox1.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)(this.age_find)).EndInit();
         this.tableLayoutPanel2.ResumeLayout(false);
         this.tableLayoutPanel2.PerformLayout();
         this.ResumeLayout(false);
@@ -116,10 +120,10 @@ partial class Filter
     }
 
     #endregion
-    private System.Windows.Forms.Label label1;
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-    private System.Windows.Forms.TextBox name_find;
+    private System.Windows.Forms.NumericUpDown age_find;
+    private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Button made_sort;
 }
 
