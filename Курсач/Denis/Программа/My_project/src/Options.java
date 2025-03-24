@@ -93,7 +93,11 @@ class Options extends JDialog{
             JOptionPane.showMessageDialog(this, "Вы не ввели текст для строки", "Ошибка", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        this.runlabel.set_text(this.text_for_print.getText());
+        if(!this.text_for_print.getText().equals(this.runlabel.get_text())){
+            this.runlabel.set_text(this.text_for_print.getText());
+            this.runlabel.reload();
+        }
+
         this.runlabel.set_count_seconds((int)this.count_seconds.getValue());
         Font new_font = new Font(
                 (String)this.font_selected.getSelectedItem(),
@@ -101,8 +105,6 @@ class Options extends JDialog{
                 (int)this.font_size.getValue()
         );
         this.runlabel.set_font(new_font);
-        if(!this.text_for_print.getText().equals(this.runlabel.get_text())){
-            this.runlabel.reload();
-        }
+
     }
 }
