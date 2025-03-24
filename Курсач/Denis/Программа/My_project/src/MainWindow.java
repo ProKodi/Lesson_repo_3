@@ -14,17 +14,14 @@ import java.awt.event.ComponentListener;
 public class MainWindow extends JFrame {
     protected RunLabel label = null;
 
-
     public MainWindow(String title) {
         super(title);
         this.setMinimumSize(new Dimension(400, 100));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
         JMenuBar menuBar = new JMenuBar();
 
-
-        JMenuItem option = new JMenuItem("Опции");
+        JMenu option = new JMenu("Опции");
         option.setCursor(new Cursor(Cursor.HAND_CURSOR));
         option.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -35,8 +32,8 @@ public class MainWindow extends JFrame {
         });
         menuBar.add(option);
 
-
-        JMenuItem start_string = new JMenuItem("Запустить строку");
+        ///  Menu
+        JMenu start_string = new JMenu("Запустить строку");
         start_string.setCursor(new Cursor(Cursor.HAND_CURSOR));
         start_string.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -44,16 +41,13 @@ public class MainWindow extends JFrame {
         });
         menuBar.add(start_string);
 
-        JMenuItem reload = new JMenuItem("Остановить строку");
+        JMenu reload = new JMenu("Остановить строку");
         reload.setCursor(new Cursor(Cursor.HAND_CURSOR));
         reload.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt ) {label.stop_text();}
         });
         menuBar.add(reload);
-
-
-
 
         addComponentListener(new ComponentListener() {
             @Override
@@ -65,14 +59,9 @@ public class MainWindow extends JFrame {
             @Override
             public void componentHidden(ComponentEvent e) {}
         });
-
-        this.label = new RunLabel("Test for example", 2);
-
+        this.label = new RunLabel();
 
         this.setJMenuBar(menuBar);
         this.add(this.label, BorderLayout.NORTH);
     }
-
-
-
 }

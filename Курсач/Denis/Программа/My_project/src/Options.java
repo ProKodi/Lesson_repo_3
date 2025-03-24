@@ -19,9 +19,6 @@ class Options extends JDialog{
     protected JComboBox<String> font_style;
     protected HashMap<String, Integer> types = new HashMap<>();
 
-    //protected HashMap<String, Function<RunLabel, IRunThread>> threads = new HashMap<>();
-    //protected JComboBox<String> thread_selected;
-
     protected JButton save;
 
     protected RunLabel runlabel = null;
@@ -62,11 +59,9 @@ class Options extends JDialog{
         panel.add(this.count_seconds);
         count_seconds.setModel(new SpinnerNumberModel(this.runlabel.get_count_seconds(), 1, 100, 1));
 
-
-
         /// Выбор шрифта
         String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-        Font select_font = new Font(fonts[0], Font.PLAIN, 16);
+        Font select_font = this.runlabel.get_font();
 
         panel.add(new JLabel("Выберете шрифт"));
         font_selected = new JComboBox<>(fonts);
@@ -81,14 +76,6 @@ class Options extends JDialog{
         panel.add(new JLabel("Начертание шрифта"));
         font_style = new JComboBox<>(types.keySet().toArray(new String[0]));
         panel.add(font_style);
-
-
-
-        /// Выбор перезапуска строки
-        //panel.add(new JLabel("Выберете способ перезапуска строки"));
-        //thread_selected = new JComboBox<>(threads.keySet().toArray(new String[0]));
-        //panel.add(thread_selected);
-
 
         this.save = new JButton("Сохранить изменения");
         this.save.addActionListener(e -> this.save_option());
@@ -113,17 +100,9 @@ class Options extends JDialog{
                 this.types.get((String)this.font_style.getSelectedItem()),
                 (int)this.font_size.getValue()
         );
-
         this.runlabel.set_font(new_font);
-        this.runlabel.setFont(new_font);
-
-
-        System.out.print("save ");
+        if(!this.text_for_print.getText().equals(this.runlabel.get_text())){
+            this.runlabel.reload();
+        }
     }
-
-
-
-
-
-
 }
