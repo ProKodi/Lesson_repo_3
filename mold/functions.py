@@ -23,7 +23,7 @@
 
 
 
-from combinatorics import NotRepeat
+from .combinatorics import NotRepeat
 from scipy import stats # pip install scipy
 from math import pi, e
 
