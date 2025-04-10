@@ -35,12 +35,6 @@ class Options extends JDialog{
         types.put("Курсивное написание", Font.ITALIC);
 
 
-        /*threads.put("При перезапуске строки начинать с места остановки", new Function<RunLabel, IRunThread>() {
-            @Override
-            public IRunThread apply(RunLabel runLabel) {return new Thread_Rem(runLabel);}
-        });*/
-        //threads.put("При перезапуске строки начинать с начала");
-
         this.setLayout(new GridLayout(2, 1));
 
 
@@ -54,10 +48,10 @@ class Options extends JDialog{
         this.text_for_print.setText(this.runlabel.get_text());
 
         /// Ввод задержки
-        panel.add(new JLabel("Введите задержку"));
+        panel.add(new JLabel("Введите задержку (в миллисекундах)"));
         this.count_seconds = new JSpinner();
         panel.add(this.count_seconds);
-        count_seconds.setModel(new SpinnerNumberModel(this.runlabel.get_count_seconds(), 1, 100, 1));
+        count_seconds.setModel(new SpinnerNumberModel(this.runlabel.get_count_miliseconds(), 1, 100_000, 1));
 
         /// Выбор шрифта
         String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();

@@ -17,11 +17,11 @@ public class RunLabel extends JLabel {
     public void set_text(String text) {this.text = text;}
 
     /// Задержка
-    protected int count_seconds = 1;
+    protected int count_miliseconds = 500;
     /// Установка задержки
-    public void set_count_seconds(int count_seconds){this.count_seconds = count_seconds;}
+    public void set_count_seconds(int count_seconds){this.count_miliseconds = count_seconds;}
     /// Выдача задержки
-    public int get_count_seconds(){return this.count_seconds;}
+    public int get_count_miliseconds(){return this.count_miliseconds;}
 
     /// Шрифт для текста
     protected Font font = new Font(

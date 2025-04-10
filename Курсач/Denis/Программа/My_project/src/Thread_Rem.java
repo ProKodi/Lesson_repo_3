@@ -26,12 +26,12 @@ public class Thread_Rem extends Thread{
                     this.lab.setText(this.lab.get_text().substring(
                             this.lab.get_text().length() - (int)index
                     ));
-                    Thread.sleep((long)this.lab.get_count_seconds() * 1000);
+                    Thread.sleep((long)this.lab.get_count_miliseconds());
                 }
                 // Добавляем пробелы
                 for(; this.index < (this.lab.get_cout_gaps() + this.lab.get_text().length()); this.index += 1){
                     this.lab.setText(" " + this.lab.getText());
-                    Thread.sleep((long)this.lab.get_count_seconds() * 1000);
+                    Thread.sleep((long)this.lab.get_count_miliseconds());
                 }
                 // Обнуляем индекс
                 this.index = 0;
