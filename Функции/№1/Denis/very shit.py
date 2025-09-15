@@ -11,7 +11,7 @@ def is_prime(n: int) -> bool:
 
 convert = lambda number_str: int(number_str)
 
-
+is_prime = lambda n: n > 1 and all(n % d != 0 for d in range(2, isqrt(n) + 1))
 
 def main():
     flag = False;
