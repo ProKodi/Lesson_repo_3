@@ -4,18 +4,23 @@
 
 
 
+def decor(func):
+    def decorate():
+        return func() + f' - {colors[decorate]}'
+    return decorate
 
+
+@decor
 def red():
-    global colors
-    return f'Color is red - {colors[red]}'
+    return 'Color is red'
 
+@decor
 def green():
-    global colors
-    return f'Color is green - {colors[green]}'
+    return 'Color is green'
 
+@decor
 def blue():
-    global colors
-    return f'Color is blue - {colors[blue]}'
+    return 'Color is blue'
 
 
 colors = {}

@@ -18,7 +18,6 @@ def convert(first_currency: str, second_currency: str, cout_first: float):
     
     
     
-    
 exchange_rates = {
     "EUR-USD": 1/0.8618,
     "USD-EUR": 0.8618
