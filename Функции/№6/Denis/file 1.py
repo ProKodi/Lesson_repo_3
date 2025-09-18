@@ -37,6 +37,7 @@ persons = [
     } 
 ]
 
+
 def take_numbers(dict_with_number: dict): 
     return dict_with_number['phone']
 
@@ -45,8 +46,6 @@ def main():
     global persons
     phones = map(take_numbers, persons)
     print(list(phones))
-    
-    
 
 
 if __name__ == "__main__":
