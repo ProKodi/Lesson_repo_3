@@ -4,10 +4,11 @@
 
 def is_strings_equal(str1, str2):
     """
-    Сравнивает две строки и возвращает True, если они равны, иначе - False.
+    Сравнивает две строки и возвращает 
+        True, если они равны, иначе - False.
     """
     if len(str1) != len(str2):
-      return False
+        return False
     
     str1_dict = {}
     str2_dict = {}
@@ -24,12 +25,6 @@ def is_strings_equal(str1, str2):
         
     return str1_dict == str2_dict
         
-
-    for i in range(len(str1)):
-      if str1[i] != str2[i]:
-        return False
-
-    return True
 
 
 print(is_strings_equal.__call__("123", "123"))
