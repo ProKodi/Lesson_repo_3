@@ -5,8 +5,8 @@
 
 
 def decor(func):
-    def decorate():
-        return func() + f' - {colors[decorate]}'
+    def decorate(*args, **kwargs):
+        return f"{func(*args, **kwargs)} - {colors[decorate]}"
     return decorate
 
 

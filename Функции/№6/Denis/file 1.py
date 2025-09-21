@@ -38,12 +38,11 @@ persons = [
 ]
 
 
-def take_numbers(dict_with_number: dict): 
+def take_numbers(dict_with_number: dict[str, str]): 
     return dict_with_number['phone']
 
 
 def main():
-    global persons
     phones = map(take_numbers, persons)
     print(list(phones))
 

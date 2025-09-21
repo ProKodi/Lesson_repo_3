@@ -14,7 +14,7 @@
 
 def convert(first_currency: str, second_currency: str, cout_first: float):
     global exchange_rates;
-    return exchange_rates[f"{first_currency}-{second_currency}"] * cout_first
+    return round(exchange_rates[f"{first_currency}-{second_currency}"] * cout_first, 2)
     
     
     

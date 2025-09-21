@@ -16,7 +16,6 @@ values = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
 
 def function():
-    global keys, values
     res = {}
     for i in range(len(keys)):
         res[keys[i]] = values[i]
