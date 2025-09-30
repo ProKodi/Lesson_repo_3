@@ -67,7 +67,7 @@ REFERENCES resrarunt.roles (id);
 
 
 CREATE TABLE resrarunt.dish (
-  id bigint UNSIGNED NOT NULL,
+  id bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   id_restorant bigint UNSIGNED NOT NULL,
   state_dish tinyint(1) DEFAULT NULL,
   cost int UNSIGNED DEFAULT NULL,
@@ -146,3 +146,48 @@ VALUES
 (33, 6, 3000)
 ;
 
+/* Заполнение Блюдо */
+
+INSERT INTO resrarunt.dish(id_restorant, state_dish, cost)
+VALUES
+(1, TRUE, 2000),
+(2, FALSE, 4000),
+(3, TRUE, 5000),
+(6, FALSE, 3000)
+;
+
+
+/* Заполнение клиент */
+
+INSERT INTO resrarunt.client(email)
+VALUES
+("Почта 1"),
+("Почта 2"),
+("Почта 3"),
+("Почта 4")
+;
+
+
+
+/* Заполнение заказ*/
+
+INSERT INTO resrarunt.order(id_restatuant, id_client, state, date)
+VALUES
+(1, 1, TRUE , "2008-02-01"),
+(2, 1, FALSE, "2008-02-09"),
+(3, 2, TRUE , "2008-02-14"),
+(6, 3, FALSE, "2008-01-30")
+;
+
+
+
+
+/* Заполнение заказаные блюда*/
+
+INSERT INTO resrarunt.order_dish
+VALUES
+(1, 5),
+(2, 5),
+(3, 6),
+(4, 6)
+;
