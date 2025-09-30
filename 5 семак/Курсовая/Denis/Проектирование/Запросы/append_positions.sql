@@ -1,32 +1,148 @@
-﻿INSERT INTO restaurants.positions (count_hour_in_week, name_position, education, position_dangerous, describe_position)
+﻿
+
+
+
+CREATE TABLE resrarunt.timetable (
+  id bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+AUTO_INCREMENT = 11,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'График работы';
+
+
+CREATE TABLE resrarunt.roles (
+  id bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  name varchar(50) NOT NULL COMMENT 'Название должности',
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+AUTO_INCREMENT = 41,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Должности';
+
+ALTER TABLE resrarunt.roles
+ADD UNIQUE INDEX name (name);
+
+
+CREATE TABLE resrarunt.restatunts (
+  id bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  adress varchar(255) NOT NULL,
+  name varchar(50) NOT NULL,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+AUTO_INCREMENT = 11,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Рестораны';
+
+ALTER TABLE resrarunt.restatunts
+ADD UNIQUE INDEX name (name);
+
+
+CREATE TABLE resrarunt.peoples (
+  id bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  id_roles bigint UNSIGNED NOT NULL,
+  id_restatunts bigint UNSIGNED NOT NULL,
+  selary int UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Сотрудники';
+
+ALTER TABLE resrarunt.peoples
+ADD CONSTRAINT FK_peoples_id_restatunts FOREIGN KEY (id_restatunts)
+REFERENCES resrarunt.restatunts (id);
+
+ALTER TABLE resrarunt.peoples
+ADD CONSTRAINT FK_peoples_id_roles FOREIGN KEY (id_roles)
+REFERENCES resrarunt.roles (id);
+
+
+
+CREATE TABLE resrarunt.dish (
+  id bigint UNSIGNED NOT NULL,
+  id_restorant bigint UNSIGNED NOT NULL,
+  state_dish tinyint(1) DEFAULT NULL,
+  cost int UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Блюда';
+
+ALTER TABLE resrarunt.dish
+ADD CONSTRAINT FK_dish_id_restorant FOREIGN KEY (id_restorant)
+REFERENCES resrarunt.restatunts (id);
+
+
+
+
+/* Заполнение ролей */
+
+INSERT INTO resrarunt.roles(name)
 VALUES
-(40, 'Повар', 'Среднее профессиональное', 1, 'Приготовление блюд согласно меню'),
-(40, 'Су-шеф', 'Среднее профессиональное', 1, 'Помощь главному повару, контроль кухни'),
-(40, 'Официант', 'Среднее', 0, 'Обслуживание гостей за столами'),
-(36, 'Бармен', 'Среднее', 0, 'Приготовление напитков, работа с барной стойкой'),
-(40, 'Менеджер ресторана', 'Высшее', 0, 'Общее управление рестораном'),
-(40, 'Хостес', 'Среднее', 0, 'Приветствие и рассадка гостей'),
-(40, 'Уборщик', null, 0, 'Уборка помещений ресторана'),
-(40, 'Сомелье', 'Высшее', 0, 'Подбор и подача вин'),
-(40, 'Кондитер', 'Среднее профессиональное', 1, 'Приготовление десертов и выпечки'),
-(40, 'Кассир', 'Среднее', 0, 'Приём оплаты и работа с кассовым аппаратом'),
-(40, 'Пекарь', 'Среднее профессиональное', 1, 'Выпечка хлебобулочных изделий'),
-(40, 'Посудомойка', null, 0, 'Мытьё посуды и кухонного инвентаря'),
-(40, 'Шеф-повар', 'Высшее', 1, 'Руководство кухней, разработка меню'),
-(40, 'Бариста', 'Среднее', 0, 'Приготовление кофе и кофейных напитков'),
-(40, 'Охранник', 'Среднее', 1, 'Обеспечение безопасности ресторана'),
-(40, 'Мойщик полов', null, 0, 'Уборка пола и помещений'),
-(40, 'Летний официант', 'Среднее', 0, 'Временное обслуживание гостей летом'),
-(40, 'Повар горячего цеха', 'Среднее профессиональное', 1, 'Приготовление горячих блюд'),
-(40, 'Повар холодного цеха', 'Среднее профессиональное', 1, 'Приготовление салатов и закусок'),
-(40, 'Стажёр повара', 'Среднее профессиональное', 0, 'Помощь повару, обучение'),
-(40, 'Менеджер по закупкам', 'Высшее', 0, 'Закупка продуктов и материалов'),
-(40, 'Доставка', 'Среднее', 1, 'Доставка заказов клиентам'),
-(40, 'Администратор', 'Высшее', 0, 'Контроль работы персонала, встречи гостей'),
-(40, 'Старший официант', 'Среднее', 0, 'Контроль работы официантов'),
-(40, 'Помощник бармена', 'Среднее', 0, 'Помощь бармену, подготовка ингредиентов'),
-(40, 'Кулинарный инспектор', 'Высшее', 1, 'Контроль качества блюд и санитарии'),
-(40, 'Повар-сушист', 'Среднее профессиональное', 1, 'Приготовление суши и роллов'),
-(40, 'Курьер', 'Среднее', 1, 'Доставка заказов клиентам'),
-(40, 'Массовик-затейник', 'Среднее', 0, 'Организация мероприятий и праздников'),
-(40, 'Ведущий мероприятий', 'Высшее', 0, 'Проведение банкетов и событий');
+("роль 1"),
+("роль 2"),
+("роль 3"),
+("роль 4"),
+("роль 5"),
+("роль 6"),
+("роль 7"),
+("роль 8"),
+("роль 9"),
+("роль 10")
+;
+
+
+/* Заполнение График работы */
+
+INSERT INTO resrarunt.timetable(id)
+VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10)
+;
+
+
+/* Заполнение Ресторан */
+
+INSERT INTO resrarunt.restatunts(adress, name)
+VALUES
+("адрес 1", "название 1"),
+("адрес 2", "название 2"),
+("адрес 3", "название 3"),
+("адрес 4", "название 4"),
+("адрес 5", "название 5"),
+("адрес 1", "название 6"),
+("адрес 2", "название 7"),
+("адрес 3", "название 8"),
+("адрес 4", "название 9"),
+("адрес 5", "название 10")
+;
+
+
+/* Заполнение Сотрудники */
+
+INSERT INTO resrarunt.peoples(id_roles, id_restatunts, selary)
+VALUES
+(31, 1, 2000),
+(40, 2, 4000),
+(32, 3, 5000),
+(33, 6, 3000)
+;
+
