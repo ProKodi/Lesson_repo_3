@@ -88,3 +88,39 @@ AS
 	  `specialtie_student`.`describe` AS `describe`
 	FROM `specialtie_student`
 	WHERE (`specialtie_student`.`name_specialties` IN ('ММ', 'ПИ', 'БУ'));
+
+
+/* Дни рождения студентов - birthday_students */
+SELECT
+  `students`.`name` AS `name`,
+  `students`.`sex` AS `sex`,
+  `students`.`parents` AS `parents`,
+  `students`.`address` AS `address`,
+  `students`.`phone_number` AS `phone_number`,
+  `students`.`passport_data` AS `passport_data`,
+  `students`.`group` AS `group`,
+  `students`.`birthday` AS `birthday`,
+  `students`.`date_receipt` AS `date_receipt`,
+  `students`.`is_full_time` AS `is_full_time`,
+  `students`.`number_record_book` AS `number_record_book`,
+  `students`.`nuber_course` AS `nuber_course`
+FROM `students`
+WHERE (`students`.`birthday` BETWEEN '1981.01.01' AND '1983.12.31')
+
+
+/* Сортированные студенты - sorted_student */
+SELECT
+  `students`.`name` AS `name`,
+  `students`.`sex` AS `sex`,
+  `students`.`parents` AS `parents`,
+  `students`.`address` AS `address`,
+  `students`.`phone_number` AS `phone_number`,
+  `students`.`passport_data` AS `passport_data`,
+  `students`.`group` AS `group`,
+  `students`.`birthday` AS `birthday`,
+  `students`.`date_receipt` AS `date_receipt`,
+  `students`.`is_full_time` AS `is_full_time`,
+  `students`.`number_record_book` AS `number_record_book`,
+  `students`.`nuber_course` AS `nuber_course`
+FROM `students`
+ORDER BY `students`.`is_full_time`, `students`.`nuber_course` DESC
