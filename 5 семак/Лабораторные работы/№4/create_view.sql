@@ -124,3 +124,60 @@ SELECT
   `students`.`nuber_course` AS `nuber_course`
 FROM `students`
 ORDER BY `students`.`is_full_time`, `students`.`nuber_course` DESC
+
+
+/*Обучающиеся очно - studying_full_time */
+CREATE 
+	DEFINER = 'root'@'localhost'
+VIEW student.studying_full_time
+AS
+	SELECT
+	  `students`.`name` AS `name`,
+	  `students`.`sex` AS `sex`,
+	  `students`.`birthday` AS `birthday`,
+	  `students`.`date_receipt` AS `date_receipt`,
+	  `students`.`number_record_book` AS `number_record_book`,
+	  `students`.`group` AS `group`,
+	  `students`.`nuber_course` AS `nuber_course`,
+	  `students`.`is_full_time` AS `is_full_time`
+	FROM `students`
+	ORDER BY `students`.`name` DESC;
+
+
+/* Студенты-москвичи с 1 родителем - moscow_students_one_parent */
+CREATE 
+	DEFINER = 'root'@'localhost'
+VIEW student.moscow_students_one_parent
+AS
+	SELECT
+	  `students`.`id` AS `id`,
+	  `students`.`name` AS `name`,
+	  `students`.`sex` AS `sex`,
+	  `students`.`parents` AS `Родитель`,
+	  `students`.`address` AS `address`,
+	  `students`.`phone_number` AS `phone_number`,
+	  `students`.`passport_data` AS `passport_data`,
+	  `students`.`group` AS `group`,
+	  `students`.`birthday` AS `birthday`,
+	  `students`.`date_receipt` AS `date_receipt`,
+	  `students`.`is_full_time` AS `is_full_time`,
+	  `students`.`number_record_book` AS `number_record_book`,
+	  `students`.`nuber_course` AS `nuber_course`,
+	  `students`.`id_specialty` AS `id_specialty`
+	FROM `students`;
+
+/* Успеваемость студентов - students_marks */
+CREATE 
+	DEFINER = 'root'@'localhost'
+VIEW student.students_marks
+AS
+	SELECT
+	  `students`.`name` AS `students_name`,
+	  `disciplines`.`name` AS `discipline_name`,
+	  `exams`.`date` AS `date`,
+	  `exams`.`mark` AS `mark`
+	FROM ((`students`
+	  JOIN `exams`
+	    ON ((`exams`.`id_student` = `students`.`id`)))
+	  JOIN `disciplines`
+	    ON ((`exams`.`id_discipline` = `disciplines`.`id`)));
