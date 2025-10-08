@@ -7,13 +7,11 @@
 USE student;
 
 
-SELECT id_student, AVG(mark)  FROM exams
+SELECT id_student, AVG(mark) AS avg_mark  FROM exams
   GROUP BY id_student
 ;
 
-SELECT id_student, AVG(mark) AS avg_mark FROM exams
-    GROUP BY id_student
-;
+
 */
 USE student;
 
