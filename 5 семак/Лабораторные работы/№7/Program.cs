@@ -10,45 +10,35 @@ using MySql.Data.MySqlClient;
 
 /// <summary> Класс для работы с БД </summary>
 
-class DB: IDisposable{
+class DB : IDisposable
+{
     public static DB this_db;
 
     /// <summary> Статический конструктор для объявления стат полей </summary>
     static DB(){
-        DB.this_db = new DB();
+        DB.this_db = new DB( "localhost", "root", "123oihoihtfr43fe" );
     }
 
 
-    protected MySqlConnection connection; 
+    protected MySqlConnection connection;
 
-    protected DB(){
-        // Сервер с БД
-        string server = "localhost"; 
-        // Пользователь
-        string user = "root";
-        // Пароль пользователя
-        string password = "123oihoihtfr43fe";
-        // Имя БД (можно не указывать если хотим сделать свою)
-        string database = "student";
+    /// <summary> Конструктор БД </summary>
+    /// <param name="server">Сервер с БД</param>
+    /// <param name="user">Пользователь</param>
+    /// <param name="password">Пароль пользователя</param>
+    /// <param name="database">Имя БД (можно не указывать если хотим сделать свою)</param>
+    protected DB(string server, string user, string password){
 
-        // Строка подключения
-        string connectionString = $"Server={server};Database={database};User ID={user};Password={password};";
-        // Если имени Бд нет string connectionString = $"Server={server};User ID={user};Password={password};";
+        string connectionString = $"Server={server};Database=student;User ID={user};Password={password};";
+        
 
         this.connection = new MySqlConnection(connectionString);
         // Открываем подключение к БД
         this.connection.Open();
     }
 
-    public void Dispose(){ 
-        // Закрываем подключение к БД
-        this.connection.Close(); 
-    }
 
-
-
-
-    public List<(string, int)> GetInform(){
+    /*public List<(string, int)> GetInform(){
         // Пример запроса
         string query = "SELECT * FROM disciplines";
 
@@ -60,8 +50,13 @@ class DB: IDisposable{
             res.Add( ( (string)reader["name"], (int)reader["age"] ) );
         }
         return res;
-    }
+    }*/
+    
 
+    public void Dispose(){ 
+        // Закрываем подключение к БД
+        this.connection.Close(); 
+    }
 
 
 }
@@ -71,10 +66,28 @@ class DB: IDisposable{
 class Program{
     public static void Main(){
         using (DB.this_db){
-            foreach((string, int) i in DB.this_db.GetInform()){
+
+            /*foreach ((string, int) i in DB.this_db.GetInform())
+            {
                 Console.WriteLine($"Name: {i.Item1}, age: {i.Item2}");
-            }
+            }*/
         }
     }
 }
 
+/*
+Разработать  главную  экранную  форму  с  четырьмя  кнопками.  
+
+Первая  для отображения данных таблицы Студент и ввода новых данных в таблицу.
+    Отображение данных в виде таблички
+    Внизу строчка для добавления данных в БД
+    Слева от строчки кнопка для сохранения + обновление таблички
+
+Новая форма: Сделать тоже самое как в 1, вывсети только id и name + не добавлять функционал для добавление данных
+
+Вторая для  открытия  третьей  формы,  третья– четвертой.  
+Четвертая  - выход  из программы.  
+Для  каждой  кнопки  прописать  соответствующий  код  либо 
+открытие новой формы, либо – закрытие главной формы.
+
+*/
