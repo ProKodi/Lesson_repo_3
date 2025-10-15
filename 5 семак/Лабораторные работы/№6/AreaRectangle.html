@@ -17,7 +17,7 @@
         <p>a = <input id = "a" type = "number"></p>
         <p>b = <input id = "b" type = "number"></p>
 
-        <p>S = <input id = "res" type = "number" readonly></p>
+        <p>S = <input id = "res" type = "text" readonly></p>
 
         <button id = "calc">Вычислить</button>
         <button><a href = "Area.html">Возрат на главную</a></button>
@@ -33,6 +33,11 @@
         let a = Number($("#a").val());
         let b = Number($("#b").val());
 
+        if(a < 0 || b < 0){
+            alert("Были введены отричательные числа/число")
+            $("#res").val("")
+            return;
+        }   
         res =  a * b
         $("#res").val(res)
     }

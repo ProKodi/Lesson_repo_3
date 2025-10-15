@@ -18,7 +18,7 @@
         <p>b = <input id = "b" type = "number"></p>
         <p>c = <input id = "c" type = "number"></p>
 
-        <p>S = <input id = "res" type = "number" readonly></p>
+        <p>S = <input id = "res" type = "text" readonly></p>
 
         <button id = "calc">Вычислить</button>
         <button><a href = "Area.html">Возрат на главную</a></button>
@@ -35,11 +35,25 @@
         let b = Number($("#b").val());
         let c = Number($("#c").val());
 
+        if(a < 0 || b < 0 || c < 0){
+            alert("Были введены отричательные числа/число")
+            $("#res").val("")
+            return;
+        }
+
         let p = (a + b + c) / 2;
 
         res = Math.sqrt(p * (p - a) * (p - b) * (p - c))  
 
-        $("#res").val(res)
+
+
+        if(((a + b) < c) || ((a + c) < b) || ((c + b) < a)){
+            $("#res").val("Ошибка")
+        }
+        
+        else{
+            $("#res").val(res)
+        }
     }
 
     $("#calc").click(calc);
