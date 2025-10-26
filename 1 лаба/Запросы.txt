@@ -1,0 +1,10 @@
+
+
+
+Общий список всех внуков
+findall(GC, grandchild(GC, _), AllGrandchildren).
+
+Список всех внуков для определеного лица
+findall(GC, grandchild(GC, margarita), MargaritaGrandchildren).
+findall(GC, grandchild(GC, denis), MargaritaGrandchildren).
+findall(GC, grandchild(GC, olga), MargaritaGrandchildren).
