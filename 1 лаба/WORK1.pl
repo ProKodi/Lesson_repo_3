@@ -1,3 +1,7 @@
+
+
+
+
 % ---------- Факты ----------
 
 male(vasya).
@@ -24,23 +28,14 @@ female(galina).
 
 % ---------- Правила ----------
 
-mother(X, Y) :- parent(X, Y), female(X).
-father(X, Y) :- parent(X, Y), male(X).
-
-son(Z, X) :- parent(X, Z), male(Z).
-daughter(Z, X) :- parent(X, Z), female(Z).
-
-grandmother(P, Z) :- parent(P, Y), parent(Y, Z), female(P).
-grandfather(P, Z) :- parent(P, Y), parent(Y, Z), male(P).
-
-brother(X, Z) :- mother(Y, X), mother(Y, Z), male(X), X \= Z.
-sister(X, Z) :- mother(Y, X), mother(Y, Z), female(X), X \= Z.
-
-uncle(X, Z) :- parent(V, Z), brother(X, V).
-aunt(X, Z) :- parent(V, Z), sister(X, V).
 
 grandchild(GC, GP) :-        % GC — grandchild (внук/внучка), GP — grandparent
     parent(GP, P),           % GP — родитель P
+    parent(P, GC).           % P — родитель GC
+
+grandson(GC, GP) :-        % GC — grandson (внук/внучка), GP — grandparent
+    parent(GP, P),          % GP — родитель P
+    male(GC),
     parent(P, GC).           % P — родитель GC
 
 
