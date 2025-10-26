@@ -26,21 +26,6 @@ female(alena).
 female(kristina).
 female(galina).
 
-% ---------- Правила ----------
-
-
-grandchild(GC, GP) :-        % GC — grandchild (внук/внучка), GP — grandparent
-    parent(GP, P),           % GP — родитель P
-    parent(P, GC).           % P — родитель GC
-
-grandson(GC, GP) :-        % GC — grandson (внук/внучка), GP — grandparent
-    parent(GP, P),          % GP — родитель P
-    male(GC),
-    parent(P, GC).           % P — родитель GC
-
-
-% ---------- Факты ----------
-
 parent(margarita, serega).
 parent(margarita, stas).
 parent(margarita, olga).
@@ -70,3 +55,14 @@ parent(tolya, dima).
 parent(tolya, galina).
 parent(kristina, dima).
 parent(kristina, galina).
+
+
+% ---------- Правила ----------
+grandchild(GC, GP) :-        % GC — grandchild (внук/внучка), GP — grandparent
+    parent(GP, P),           % GP — родитель P
+    parent(P, GC).           % P — родитель GC
+
+grandson(GC, GP) :-        % GC — grandson (внук/внучка), GP — grandparent
+    parent(GP, P),          % GP — родитель P
+    male(GC),
+    parent(P, GC).           % P — родитель GC
