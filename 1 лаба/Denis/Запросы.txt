@@ -11,5 +11,6 @@ findall(GC, grandchild(GC, denis), MargaritaGrandchildren).
 findall(GC, grandchild(GC, olga), MargaritaGrandchildren).
 
 findall(GC, grandson(GC, margarita), MargaritaGrandchildren).
-findall(GC, grandson(GC, denis), MargaritaGrandchildren).
-findall(GC, grandson(GC, olga), MargaritaGrandchildren).
+findall(GC, grandson(GC, denis), DenisGrandchildren).
+findall(GC, grandson(GC, olga), OlgaGrandchildren).
+findall(GC, grandson(GC, kostya), KostyaGrandchildren).
