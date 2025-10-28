@@ -3,9 +3,7 @@
 
 
 /* Удаление базы данных Restaurants*/
-
-DROP DATABASE restaurants; 
-
+DROP DATABASE IF EXISTS restaurants; 
 /* ------------ */
 
 
@@ -24,22 +22,21 @@ COLLATE utf8mb4_0900_ai_ci;
 /*
 1
 Создание таблицы Должности - positions
-
 Атрибуты:
-  1) 'Код должности' - id
-  2) 'Название должности' - title
-  3) 'Образование для должности' - education
-  /* 4) 'Название отдела' - department_name */
-  5) 'Описание должности' - description
-  6) 'Должность являеется опасной'- is_dangerous
+  1) 'Код должности' BIGINT - id
+
+  2) 'Название должности' VARCHAR(100) - title
+  3) 'Описание должности' TEXT - description
+  4) 'Образование для должности' VARCHAR(255) - education
+  5) 'Должность являеется опасной' BOOL - is_dangerous
 */
 CREATE TABLE restaurants.positions (
-  id bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код должности',
-  title varchar(255) NOT NULL COMMENT 'Название должности',
-  education varchar(255) DEFAULT NULL COMMENT 'Образование для должности',
-  /*department_name varchar(255) NOT NULL COMMENT 'Название отдела',*/
-  description text DEFAULT NULL COMMENT 'Описание должности',
-  is_dangerous tinyint(1) DEFAULT 0 COMMENT 'Должность являеется опасной',
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код должности',
+  
+  title VARCHAR(100) NOT NULL COMMENT 'Название должности',
+  description TEXT DEFAULT NULL COMMENT 'Описание должности',
+  education VARCHAR(255) DEFAULT NULL COMMENT 'Образование для должности',
+  is_dangerous BOOL DEFAULT 0 COMMENT 'Должность являеется опасной',
   PRIMARY KEY (id)
 )
 ENGINE = INNODB,
@@ -53,21 +50,38 @@ COMMENT = 'Должности';
 /*
 2
 Создание таблицы График работы - schedule
-
-Количество часов работы для каждого дня
-время начала работы для каждого дня
-
 Атрибуты:
-  1) 'Код графика работы' - id
+  1) 'Код графика работы' BIGINT - id
 
-  2) 'Время работы в понедельник' - time_monday
-  2) 'Время работы в вторник' - time_tuesday
-  3) 'Время работы в среда' - time_wednesday
-  4) 'Время работы в четверг' - time_thursday
-  5) 'Время работы в пятница' - time_friday
-  6) 'Время работы в суббота' - time_saturday
-  7) 'Время работы в воскресенье' - time_sunday
+  2) 'Время работы в понедельник' VARCHAR(13) - time_monday
+  2) 'Время работы в вторник' VARCHAR(13) - time_tuesday
+  3) 'Время работы в среда' VARCHAR(13) - time_wednesday
+  4) 'Время работы в четверг' VARCHAR(13) - time_thursday
+  5) 'Время работы в пятница' VARCHAR(13) - time_friday
+  6) 'Время работы в суббота' VARCHAR(13) - time_saturday
+  7) 'Время работы в воскресенье' VARCHAR(13) - time_sunday
+
+Формат времени: 
+Начало - конец
+чч.мм - чч.мм
 */
+CREATE TABLE restaurants.schedule (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код графика работы',
+  
+  time_monday VARCHAR(13) DEFAULT "08.00 - 18.00" COMMENT "Время работы в понедельник",
+  time_tuesday VARCHAR(13) DEFAULT "08.00 - 18.00" COMMENT "Время работы в вторник",
+  time_wednesday VARCHAR(13) DEFAULT "08.00 - 18.00" COMMENT "Время работы в среду",
+  time_thursday VARCHAR(13) DEFAULT "08.00 - 18.00" COMMENT "Время работы в четверг",
+  time_friday VARCHAR(13) DEFAULT "08.00 - 18.00" COMMENT "Время работы в пятницу",
+  time_saturday VARCHAR(13) DEFAULT "08.00 - 18.00" COMMENT "Время работы в субботу",
+  time_sunday VARCHAR(13) DEFAULT "08.00 - 18.00" COMMENT "Время работы в воскресенье",
+
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'График работы';
 
 /* ------------ */
 
@@ -77,13 +91,26 @@ COMMENT = 'Должности';
 /*
 3
 Создание таблицы Диапазон блюд - range_dishes
-  1) 'Код блюда' - id
-  2) 'Пригодно для упоребления несовершенолетними' - for_children
-  3) 'название' - name
-  4) 'Описание блюда' - describe
+  1) 'Код блюда' BIGINT - id
 
+  2) 'название' VARCHAR(100) - name
+  3) 'Описание блюда' TEXT - describe
+  4) 'Пригодно для упоребления несовершенолетними' BOOL - for_children
 */
 
+CREATE TABLE restaurants.range_dishes (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код блюда',
+  
+  name VARCHAR(100) COMMENT "Название",
+  `describe` TEXT COMMENT "Описание блюда",
+  for_children BOOL COMMENT "Пригодно для упоребления несовершенолетними",
+
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Диапазон блюд';
 
 /* ------------ */
 
@@ -92,14 +119,34 @@ COMMENT = 'Должности';
 /*
 4(Ссылка на 2)
 Создание таблицы Рестораны - restaurants
-  1) 'Код ресторана' - id
-  2) 'Количество звез мишлена' - cout_star
-  3) 'Оценка по отзывам' - mark_feedback
-  4) 'название' - name
-  5) 'адрес' - address
-  6) 'ID графика работы' - id_schedule
+  1) 'Код ресторана' BIGINT - id
+
+  2) 'название' VARCHAR(100) - name
+  3) 'Оценка' FLOAT - mark_feedback
+  4) 'адрес' VARCHAR(255) - address
+  5) 'Количество звез мишлена' TINYINT - cout_star
+  6) 'ID графика работы' BIGINT - id_schedule
 
 */
+CREATE TABLE restaurants.restaurants (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код ресторана',
+  
+  name VARCHAR(100) COMMENT "Название",
+  mark_feedback FLOAT DEFAULT 0 COMMENT "Оценка",
+  address VARCHAR(255) COMMENT "Адрес",
+  cout_star TINYINT DEFAULT 0 COMMENT "Количество звез мишлена",
+  id_schedule BIGINT UNSIGNED NOT NULL COMMENT "Код графика работы",
+
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Рестораны';
+
+ALTER TABLE restaurants.restaurants
+ADD CONSTRAINT FK_restaurants_id_schedule FOREIGN KEY (id_schedule)
+REFERENCES restaurants.schedule (id);
 
 
 /* ------------ */
