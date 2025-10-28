@@ -30,6 +30,6 @@ SELECT students.name, `group`, date, mark, exam_discp.name  FROM students
         WHERE mark >= 3
     ) AS exam_discp
     ON students.id = exam_discp.id_student
-    
+    LIMIT 0, 1000
 
 ;
