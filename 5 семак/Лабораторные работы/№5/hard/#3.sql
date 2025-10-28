@@ -20,7 +20,7 @@ SELECT name, `describe`, IFNULL(swc.cout_sp, 0) FROM specialties
       GROUP BY id_specialty
     )  AS swc
   ON specialties.id = swc.id_specialty
-
+  LIMIT 0, 1000
 
 
 ;
