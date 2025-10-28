@@ -9,20 +9,6 @@ USE student;
 /* SELECT * FROM disciplines   */
 
 /*
-SELECT id_student, id_discipline, mark FROM exams
-  WHERE mark = (SELECT max(mark) FROM exams)
-
-*/
-
-/* SELECT id_student, id_discipline, MAX(mark) FROM exams  */
-
-
-/*
-/* select * FROM students  */
-
-/* SELECT * FROM disciplines   */
-
-/*
 SELECT id_discipline, MAX(mark) AS max_mark FROM exams
   GROUP BY id_discipline
 
@@ -36,19 +22,18 @@ SELECT id_discipline, MAX(mark) AS max_mark FROM exams
   GROUP BY id_discipline
 */
 
-SELECT sl_dicp.name, MAX(mark) FROM exams
-  INNER JOIN (select * FROM students) AS sl_stud
-  ON sl_stud.id = exams.id_student
+/*
+select id_discipline, MAX(mark) FROM exams
+  GROUP BY id_discipline
 
-  INNER JOIN (SELECT * FROM disciplines) AS sl_dicp
-  ON sl_dicp.id = exams.id_discipline
-
-  GROUP BY exams.id_discipline
-
-
+  WHERE mark = (
+    SELECT MAX(mark) FROM exams
+      WHERE exams.id_discipline = id
+  )
 
 
 */
+
 
 SELECT sl_dicp.name, sl_stud.name, mark FROM exams
   INNER JOIN (SELECT * FROM disciplines) AS sl_dicp
