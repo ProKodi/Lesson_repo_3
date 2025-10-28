@@ -5,6 +5,7 @@
 USE student;
 
 
+/*
 SELECT students.name, `group`, date, mark, exam_discp.name  FROM students
     INNER JOIN(
         SELECT id_student, date, mark, discp.name FROM exams
@@ -15,5 +16,19 @@ SELECT students.name, `group`, date, mark, exam_discp.name  FROM students
     ) AS exam_discp
     ON students.id = exam_discp.id_student
     
+*/
 
+
+-- SELECT * FROM exams
+
+-- SELECT * FROM disciplines
+
+SELECT name_student, discipline_name, date, mark  FROM exams
+  INNER JOIN (SELECT id, name AS discipline_name FROM disciplines) AS discip
+  ON discip.id = exams.id_discipline
+
+  INNER JOIN (SELECT id, name AS name_student FROM students) AS std
+  ON std.id = exams.id_student
+  
+  LIMIT 0, 1000
 ;
