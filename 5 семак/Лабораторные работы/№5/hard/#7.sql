@@ -23,12 +23,12 @@ SELECT students.name, `group`, date, mark, exam_discp.name  FROM students
 
 -- SELECT * FROM disciplines
 
-SELECT name_student, discipline_name, date, mark  FROM exams
-  INNER JOIN (SELECT id, name AS discipline_name FROM disciplines) AS discip
-  ON discip.id = exams.id_discipline
+SELECT students.name AS name_student, disciplines.name AS discipline_name, date, mark  FROM exams
+  INNER JOIN disciplines 
+  ON disciplines.id = exams.id_discipline
 
-  INNER JOIN (SELECT id, name AS name_student FROM students) AS std
-  ON std.id = exams.id_student
+  INNER JOIN students
+  ON students.id = exams.id_student
   
   LIMIT 0, 1000
 ;

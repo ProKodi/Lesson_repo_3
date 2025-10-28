@@ -35,18 +35,19 @@ select id_discipline, MAX(mark) FROM exams
 */
 
 
-SELECT sl_dicp.name, sl_stud.name, mark FROM exams
-  INNER JOIN (SELECT * FROM disciplines) AS sl_dicp
-  ON sl_dicp.id = exams.id_discipline
+SELECT disciplines.name, students.name, mark FROM exams
+  INNER JOIN disciplines 
+  ON disciplines.id = exams.id_discipline
 
-  INNER JOIN (select * FROM students) AS sl_stud
-  ON sl_stud.id = exams.id_student
+  INNER JOIN students
+  ON students.id = exams.id_student
 
   WHERE mark = (
-    SELECT MAX(mark) FROM exams AS new_exam
-      WHERE new_exam.id_discipline = exams.id_discipline
+    SELECT MAX(mark) FROM exams AS exams_for_where
+      WHERE exams_for_where.id_discipline = exams.id_discipline
   )
   LIMIT 0, 1000
+
 
 
 ;

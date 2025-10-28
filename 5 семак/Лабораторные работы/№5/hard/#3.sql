@@ -14,11 +14,11 @@ SELECT id_specialty, COUNT(*) FROM students
 
 */
 
-SELECT name, `describe`, IFNULL(swc.cout_sp, 0) FROM specialties
+SELECT name, `describe`, IFNULL(swc.cout_sp, 0) AS count_student FROM specialties
   LEFT JOIN(
     SELECT id_specialty, COUNT(*) AS cout_sp FROM students
       GROUP BY id_specialty
-    )  AS swc
+    ) AS swc
   ON specialties.id = swc.id_specialty
   LIMIT 0, 1000
 
