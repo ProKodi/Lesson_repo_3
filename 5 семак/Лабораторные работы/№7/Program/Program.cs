@@ -38,21 +38,6 @@ class DB : IDisposable
     }
 
 
-    /*public List<(string, int)> GetInform(){
-        // Пример запроса
-        string query = "SELECT * FROM disciplines";
-
-        List<(string, int)> res = new List<(string, int)>();
-
-        using var command = new MySqlCommand(query, this.connection);
-        using var reader = command.ExecuteReader();
-        while (reader.Read()){
-            res.Add( ( (string)reader["name"], (int)reader["age"] ) );
-        }
-        return res;
-    }*/
-    
-
     public void Dispose(){ 
         // Закрываем подключение к БД
         this.connection.Close(); 
