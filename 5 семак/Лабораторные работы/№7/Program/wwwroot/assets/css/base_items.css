@@ -2,6 +2,24 @@
 
 
 
+/* Добавление отступов с лева и права */
+.padding{
+    padding-left: 1%; 
+    padding-right: 1%; 
+}
+
+/* Для работы с блоком текста */
+.text_block{
+    padding-left: 1em;
+
+    ol, ul{
+        padding-left: 3em;
+        line-height: 1.2;
+    }
+}
+
+
+
 
 /* /// Ссылки  */
 a{
@@ -14,7 +32,6 @@ a:hover{ color: #6d94ff; }
 
 /* Сбор ссылок */
 nav{ a{ margin-left: 1rem; } }
-
 /* Для работы с ссылками альтернатива (оборачивать в div или p)*/
 .alt_link {
     text-align: center;
@@ -26,11 +43,11 @@ nav{ a{ margin-left: 1rem; } }
 }
 
 
+
 /* /// Заголовки, особый текст */
 h1, h2, h3, h4, h5, h6{
     color: #837dfb;
     font-weight: bold;
-    margin-bottom: 0.5rem;
 }
 h1{font-size: 1.5rem;}
 h2{font-size: 1.40rem;}
@@ -42,29 +59,6 @@ h6{font-size: 1.05rem;}
 label { font-weight: bold; }
 
 
-/* /// Поле ввода */
-input {
-    padding: 0.70rem;
-    border-radius: 10px;
-    outline: none;
-    background: #2b2b4d;
-    color: #fff;
-    font-size: 1rem;
-
-    border: 2px solid #bababa00;
-}
-/* Цвет, когда поле пустое или неверно заполнено */
-input:invalid {
-    border: 2px solid #ff4d4d; 
-}
-input:focus {
-    border: 2px solid #6d94ff;
-}
-/* Автозаполнение */
-input:-webkit-autofill {
-    -webkit-text-fill-color: #ffffff;
-    transition: background-color 5000s ease-in-out 0s;
-}
 
 
 /* /// Кнопка */

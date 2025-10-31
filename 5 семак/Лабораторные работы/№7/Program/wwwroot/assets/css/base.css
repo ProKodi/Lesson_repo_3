@@ -40,10 +40,11 @@ html{
 
     font-family: Arial, sans-serif;
     font-size: 18px;
-    line-height: 1.5;
+    line-height: 1.4;
 
     min-width: 100vw; /* страница занимает всю ширину */
-    width: fit-content;  /* ширина определяется содержимым */
+    width: max-content;  /* ширина определяется содержимым */
+
 }
 
 
@@ -93,7 +94,6 @@ header {
     /* Добавляем кастомные ссылки для шапки страницы */
     nav a{
         color: #ffffff;
-        margin-left: 1.2rem;
         text-decoration: none;
         font-size: 1.2rem;
     }
@@ -103,43 +103,15 @@ header {
 /* Краткое описание для странички  */
 section {
     background: #2d2a65;
-    padding: 1.3rem;
-    padding-left: 1%; 
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     
-    p{ padding-left: 1%; }
 }
 
 
 /* Основное тело сервера*/
 main{
     flex: 1; /* растягивается */
-
-    p{ padding-left: 1%; }
-
-    /* Рамка для элементов */
-    fieldset{
-        margin-left: 2%; 
-        margin-right: 2%; 
-
-        display: flex;
-        flex-direction: column; 
-        align-items: center;    
-        gap: 10px;              
-        border-color: #00000000; /* меняем цвет рамки*/
-
-        /* Название рамки */
-        legend {
-            text-align: center; 
-            color: #837dfb;  
-            padding-top: 1%;
-            padding-bottom: 1%;
-        }
-        
-        img, video {
-            max-width: 90%;  /* не шире контейнера */
-            height: auto;     /* сохраняем пропорции */
-        }
-    }
 }
 
 
