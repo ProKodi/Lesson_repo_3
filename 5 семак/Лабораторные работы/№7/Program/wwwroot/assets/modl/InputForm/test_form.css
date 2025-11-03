@@ -45,10 +45,10 @@
 
 /* Работа с хедером формы */
 #data_form_header{
-    .item_to_center{
+    /*.item_to_center{
         display: flex;
         justify-self: center;
-    }
+    }*/
     margin-top: 2rem;
 }
 

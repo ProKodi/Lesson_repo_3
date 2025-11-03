@@ -8,8 +8,15 @@ $("head").append(
 );
 
 
+/// Варианты добавления элемент на форму
+enum Anchor{
+    Left = 1,
+    Center = 2,
+    Right = 3,
+}
 
-/// Класс оверлея
+
+/// Класс реализующий функционал оверлея
 class OverLay{
     // Создаем оверлей 
     public readonly overlay = $("<div id='overlay'></div>");
@@ -46,6 +53,120 @@ class OverLay{
 }
 
 
+/// Класс реализующий хеадер формы
+class HeaderForm{
+    /// Хеадер формы
+    public readonly data_form_header = $(`<header id = "data_form_header"></header>`);
+
+    public constructor(readonly parent: JQuery<HTMLElement>){
+        parent.append(this.data_form_header);
+    }
+
+    /// Добавление элемента на форму
+    public append(child: JQuery<HTMLElement>, anc: Anchor = Anchor.Left): void{ 
+        let css_style: any = { display: "flex", "justify-self": "flex-start", };
+
+        switch(anc){
+            case(Anchor.Left): {
+                css_style["justify-self"] = "flex-start";
+                break;
+            }
+            case(Anchor.Center): {
+                css_style["justify-self"] = "center";
+                break;
+            }
+            case(Anchor.Right): {
+                css_style["justify-self"] = "flex-end";
+                break;
+
+            }
+        }
+        this.data_form_header.append(child.css(css_style));
+    }
+}
+
+
+/// Класс реализующий функционал заголовка таблицы
+class HeaderTableInput{
+    // Заголовок таблицы
+    public readonly table_head = $(`
+        <thead id="table-head">
+        </thead>
+    `);
+
+    // Строка заголовка таблицы
+    public readonly  row_header = $(`
+    <div data-type-role="flex-row" class="gjs-plg-flex-row" id="iq7ff">
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="irrfk"><!-- <div id="ia68e">Insert your text here</div> --></div>
+      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="i8ufi"><!-- <div id="i3ew5">Insert your text here</div> --></div>
+    </div>
+
+html {
+  scroll-behavior: smooth;
+}
+
+.gjs-plg-flex-column {
+  flex-grow: 1;
+}
+
+#irrfk {
+  flex-basis: 50%;
+  min-width: 20%;
+}
+
+#i8ufi {
+  flex-basis: 50%;
+  min-width: 80%;
+}
+
+.gjs-plg-flex-row {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+
+#iq7ff {
+  width: 100%;
+}
+    `)
+
+    // Название колонки с названиями полей
+    public readonly first_field_header = $(`<th class="first_col">Название поля</th>`);
+    // Название колонки с значениями полей
+    public readonly second_field_header = $(`<th class="first_col">Данные для поля</th>`);
+
+
+    public constructor(readonly parent: JQuery<HTMLElement>){
+        let temp_tr = $("<tr></tr>");
+        temp_tr.append(this.first_field_header)
+        temp_tr.append(this.second_field_header)
+
+        this.table_head.append(temp_tr);
+
+        parent.append(this.table_head);
+    }
+
+    /// Изменения названия для первого заголовка
+    public change_text_first_header(new_name: string){
+
+        this.first_field_header.text(new_name);
+    }
+
+    /// Изменения названия для второго заголовка
+    public change_text_second_header(new_name: string){
+        this.second_field_header.text(new_name);
+    }
+
+
+    
+}
+
+/// Класс реализующий функционал таблицы для ввода данных
+class TableInput{
+
+}
+
+
 abstract class BaseInputForm{
     /// Оверлей
     public readonly overlay: OverLay;
@@ -57,7 +178,7 @@ abstract class BaseInputForm{
     public readonly data_form = $(`<form id = "data_form"></form>`); 
 
     /// Хеадер формы
-    public readonly data_form_header = $(`<header id = "data_form_header"></header>`);
+    public readonly data_form_header: HeaderForm;
 
     /// Добавляем таблицу на форму
     public readonly table_form = $(`
@@ -65,14 +186,14 @@ abstract class BaseInputForm{
         </table>
     `);
     // Заголовок таблицы
-    public readonly table_head = $(`
+    public readonly table_head: HeaderTableInput; /*$(`
         <thead id="table-head">
             <tr>
                 <th class="first_col">Название поля</th>
                 <th class="second_col">Данные для поля</th>
             </tr>
         </thead>
-    `);
+    `);*/
     // Тело таблицы
     public readonly table_body = $(` <tbody id="table-body"> </tbody> `);
 
@@ -106,13 +227,14 @@ abstract class BaseInputForm{
 
     public constructor(){
         /// Работа с Хеадером формы
-            // Добаляем надпись на центр
-            this.data_form_header.append(`<h1 class = "item_to_center">Тут Хеадер формы</h1>`);
-        this.data_form.append(this.data_form_header)
+        this.data_form_header = new HeaderForm(this.data_form);
+
 
         /// Работа с таблицей формы
         // Добавляем заголовок
-        this.table_form.append(this.table_head)
+        this.table_head = new HeaderTableInput(this.table_form)
+
+        // this.table_form.append(this.table_head)
         // Добавляем тело таблицы
         this.table_form.append(this.table_body)
 
