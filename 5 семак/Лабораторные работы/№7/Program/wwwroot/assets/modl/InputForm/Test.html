@@ -1,0 +1,62 @@
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+    <meta charset = "utf-8">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src=".\dist\main.js"></script>
+</head>
+
+<body>
+    <header>
+    </header>
+    <main>
+        <button id = "test">Тест</button>
+    </main>
+    <footer></footer>
+</body>
+
+<script defer>
+
+    $("#test").on("click", async function(){
+        let form_input = new TableInputForm();
+
+        form_input.data_form_header.append($(`<h1>Тут Хеадер формы(Лево)</h1>`));
+        form_input.data_form_header.append($(`<h1>Тут Хеадер формы(Центр)</h1>`), Anchor.Center);
+        form_input.data_form_header.append($(`<h1>Тут Хеадер формы(Право)</h1>`), Anchor.Right);
+        
+
+        form_input.table_form.table_head.change_first_header(
+            $("<h1>Мой заголовок для имен</h1>")
+        );
+        form_input.table_form.table_head.change_second_header(
+            $("<h2>Мой текст для значений </h2>")
+        );
+
+        form_input.table_form.table_body.append_row("ФИО1", "name", "text");
+
+        form_input.table_form.table_body.append_row("ФИО2", "name", "textarea");
+
+        form_input.table_form.table_body.append_row("ФИО3", "name", "text");
+
+        form_input.table_form.table_body.append_row("ФИО4", "name", "text");
+        
+        form_input.table_form.table_body.append_row("ФИО5", "name", "text");
+
+        form_input.table_form.table_body.append_row("ФИО6", "name", "text");
+
+        form_input.table_form.table_body.append_row("ФИО7", "name", "text");
+
+        
+        await form_input.show();
+    })
+
+</script> 
+
+</html>

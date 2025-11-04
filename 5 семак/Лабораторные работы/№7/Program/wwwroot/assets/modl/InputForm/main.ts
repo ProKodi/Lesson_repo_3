@@ -89,80 +89,84 @@ class HeaderForm{
 /// Класс реализующий функционал заголовка таблицы
 class HeaderTableInput{
     // Заголовок таблицы
-    public readonly table_head = $(`
-        <thead id="table-head">
-        </thead>
-    `);
+    public readonly table_head = $(` <thead id="table-head"> </thead> `);
 
     // Строка заголовка таблицы
-    public readonly  row_header = $(`
-    <div data-type-role="flex-row" class="gjs-plg-flex-row" id="iq7ff">
-      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="irrfk"><!-- <div id="ia68e">Insert your text here</div> --></div>
-      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="i8ufi"><!-- <div id="i3ew5">Insert your text here</div> --></div>
-    </div>
-
-html {
-  scroll-behavior: smooth;
-}
-
-.gjs-plg-flex-column {
-  flex-grow: 1;
-}
-
-#irrfk {
-  flex-basis: 50%;
-  min-width: 20%;
-}
-
-#i8ufi {
-  flex-basis: 50%;
-  min-width: 80%;
-}
-
-.gjs-plg-flex-row {
-  display: flex;
-  align-items: stretch;
-  flex-wrap: nowrap;
-}
-
-#iq7ff {
-  width: 100%;
-}
-    `)
+    public readonly row_header = $(`<tr></tr>`);
 
     // Название колонки с названиями полей
     public readonly first_field_header = $(`<th class="first_col">Название поля</th>`);
     // Название колонки с значениями полей
-    public readonly second_field_header = $(`<th class="first_col">Данные для поля</th>`);
+    public readonly second_field_header = $(`<th class="second_col">Данные для поля</th>`);
 
 
     public constructor(readonly parent: JQuery<HTMLElement>){
-        let temp_tr = $("<tr></tr>");
-        temp_tr.append(this.first_field_header)
-        temp_tr.append(this.second_field_header)
+        this.row_header.append(this.first_field_header)
+        this.row_header.append(this.second_field_header)
 
-        this.table_head.append(temp_tr);
+        this.table_head.append(this.row_header);
 
         parent.append(this.table_head);
     }
 
-    /// Изменения названия для первого заголовка
-    public change_text_first_header(new_name: string){
-
-        this.first_field_header.text(new_name);
+    /// Изменения виджета для первого заголовка
+    public change_first_header(new_widget: JQuery<HTMLElement>){
+        this.first_field_header.empty();
+        this.first_field_header.append(new_widget);
     }
 
-    /// Изменения названия для второго заголовка
-    public change_text_second_header(new_name: string){
-        this.second_field_header.text(new_name);
+    /// Изменения виджета для второго заголовка
+    public change_second_header(new_widget: JQuery<HTMLElement>){
+        this.second_field_header.empty();
+        this.second_field_header.append(new_widget);
     }
-
-
-    
 }
+
+class BodyTableInput{
+    // Тело таблицы
+    public readonly table_body = $(`<tbody id="table-body"></tbody>`);
+
+    public constructor(readonly parent: JQuery<HTMLElement>){
+        parent.append(this.table_body);
+    }
+
+    public append_row(label: string, id: string, type: string = "text"): void{
+        let row_container = $("<tr></tr>");
+        row_container.append($(`<td><p>${label}</p></td>`).css({
+            width: "20%",
+        }));
+        row_container.append($(`<td><input type = ${type} id = ${id}></td>`).css({
+            width: "80%",
+        }));
+        
+        this.table_body.append(row_container);
+    }
+}
+
 
 /// Класс реализующий функционал таблицы для ввода данных
 class TableInput{
+    // Заголовок таблицы
+    public readonly table_head: HeaderTableInput;
+
+    // Тело таблицы
+    public readonly table_body: BodyTableInput;
+
+    /// Добавляем таблицу на форму
+    public readonly table_form = $(`
+        <table id = "table_form">
+        </table>
+    `);
+
+    public constructor(readonly parent: JQuery<HTMLElement>){
+        // Добавляем заголовок
+        this.table_head = new HeaderTableInput(this.table_form)
+
+        // Добавляем тело таблицы
+        this.table_body = new BodyTableInput(this.table_form);
+
+        parent.append(this.table_form);
+    }
 
 }
 
@@ -181,21 +185,7 @@ abstract class BaseInputForm{
     public readonly data_form_header: HeaderForm;
 
     /// Добавляем таблицу на форму
-    public readonly table_form = $(`
-        <table id = "table_form">
-        </table>
-    `);
-    // Заголовок таблицы
-    public readonly table_head: HeaderTableInput; /*$(`
-        <thead id="table-head">
-            <tr>
-                <th class="first_col">Название поля</th>
-                <th class="second_col">Данные для поля</th>
-            </tr>
-        </thead>
-    `);*/
-    // Тело таблицы
-    public readonly table_body = $(` <tbody id="table-body"> </tbody> `);
+    public readonly table_form: TableInput; 
 
     /// Строка кнопок
     public readonly row_bt = $(`<div id = "row_bt"></div>`);
@@ -231,14 +221,8 @@ abstract class BaseInputForm{
 
 
         /// Работа с таблицей формы
-        // Добавляем заголовок
-        this.table_head = new HeaderTableInput(this.table_form)
+        this.table_form = new TableInput(this.data_form);
 
-        // this.table_form.append(this.table_head)
-        // Добавляем тело таблицы
-        this.table_form.append(this.table_body)
-
-        this.data_form.append(this.table_form)
 
         /// Работа с строкой кнопок
         this.bt_save.on("click", function(){
@@ -251,12 +235,10 @@ abstract class BaseInputForm{
         this.row_bt.append(this.bt_clear);
         this.data_form.append(this.row_bt)
 
-
         this.window_form.append(this.data_form);
 
         this.overlay = new OverLay($("body")); 
         this.overlay.append(this.window_form);
-
     }
 
 

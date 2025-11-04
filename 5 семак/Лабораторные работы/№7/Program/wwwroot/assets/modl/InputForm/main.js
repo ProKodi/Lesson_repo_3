@@ -79,66 +79,62 @@ class HeaderTableInput {
     constructor(parent) {
         this.parent = parent;
         // Заголовок таблицы
-        this.table_head = $(`
-        <thead id="table-head">
-        </thead>
-    `);
+        this.table_head = $(` <thead id="table-head"> </thead> `);
         // Строка заголовка таблицы
-        this.row_header = $(`
-    <div data-type-role="flex-row" class="gjs-plg-flex-row" id="iq7ff">
-      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="irrfk"><!-- <div id="ia68e">Insert your text here</div> --></div>
-      <div data-type-role="flex-column" class="gjs-plg-flex-column" id="i8ufi"><!-- <div id="i3ew5">Insert your text here</div> --></div>
-    </div>
-
-html {
-  scroll-behavior: smooth;
-}
-
-.gjs-plg-flex-column {
-  flex-grow: 1;
-}
-
-#irrfk {
-  flex-basis: 50%;
-  min-width: 20%;
-}
-
-#i8ufi {
-  flex-basis: 50%;
-  min-width: 80%;
-}
-
-.gjs-plg-flex-row {
-  display: flex;
-  align-items: stretch;
-  flex-wrap: nowrap;
-}
-
-#iq7ff {
-  width: 100%;
-}
-    `);
+        this.row_header = $(`<tr></tr>`);
         // Название колонки с названиями полей
         this.first_field_header = $(`<th class="first_col">Название поля</th>`);
         // Название колонки с значениями полей
-        this.second_field_header = $(`<th class="first_col">Данные для поля</th>`);
-        let temp_tr = $("<tr></tr>");
-        temp_tr.append(this.first_field_header);
-        temp_tr.append(this.second_field_header);
-        this.table_head.append(temp_tr);
+        this.second_field_header = $(`<th class="second_col">Данные для поля</th>`);
+        this.row_header.append(this.first_field_header);
+        this.row_header.append(this.second_field_header);
+        this.table_head.append(this.row_header);
         parent.append(this.table_head);
     }
-    /// Изменения названия для первого заголовка
-    change_text_first_header(new_name) {
-        this.first_field_header.text(new_name);
+    /// Изменения виджета для первого заголовка
+    change_first_header(new_widget) {
+        this.first_field_header.empty();
+        this.first_field_header.append(new_widget);
     }
-    /// Изменения названия для второго заголовка
-    change_text_second_header(new_name) {
-        this.second_field_header.text(new_name);
+    /// Изменения виджета для второго заголовка
+    change_second_header(new_widget) {
+        this.second_field_header.empty();
+        this.second_field_header.append(new_widget);
+    }
+}
+class BodyTableInput {
+    constructor(parent) {
+        this.parent = parent;
+        // Тело таблицы
+        this.table_body = $(`<tbody id="table-body"></tbody>`);
+        parent.append(this.table_body);
+    }
+    append_row(label, id, type = "text") {
+        let row_container = $("<tr></tr>");
+        row_container.append($(`<td><p>${label}</p></td>`).css({
+            width: "20%",
+        }));
+        row_container.append($(`<td><input type = ${type} id = ${id}></td>`).css({
+            width: "80%",
+        }));
+        this.table_body.append(row_container);
     }
 }
 /// Класс реализующий функционал таблицы для ввода данных
 class TableInput {
+    constructor(parent) {
+        this.parent = parent;
+        /// Добавляем таблицу на форму
+        this.table_form = $(`
+        <table id = "table_form">
+        </table>
+    `);
+        // Добавляем заголовок
+        this.table_head = new HeaderTableInput(this.table_form);
+        // Добавляем тело таблицы
+        this.table_body = new BodyTableInput(this.table_form);
+        parent.append(this.table_form);
+    }
 }
 class BaseInputForm {
     constructor() {
@@ -146,13 +142,6 @@ class BaseInputForm {
         this.window_form = $(`<div id = "window_form"></div>`);
         /// Форма окна
         this.data_form = $(`<form id = "data_form"></form>`);
-        /// Добавляем таблицу на форму
-        this.table_form = $(`
-        <table id = "table_form">
-        </table>
-    `);
-        // Тело таблицы
-        this.table_body = $(` <tbody id="table-body"> </tbody> `);
         /// Строка кнопок
         this.row_bt = $(`<div id = "row_bt"></div>`);
         // Кнопка очистки
@@ -179,12 +168,7 @@ class BaseInputForm {
         /// Работа с Хеадером формы
         this.data_form_header = new HeaderForm(this.data_form);
         /// Работа с таблицей формы
-        // Добавляем заголовок
-        this.table_head = new HeaderTableInput(this.table_form);
-        // this.table_form.append(this.table_head)
-        // Добавляем тело таблицы
-        this.table_form.append(this.table_body);
-        this.data_form.append(this.table_form);
+        this.table_form = new TableInput(this.data_form);
         /// Работа с строкой кнопок
         this.bt_save.on("click", function () {
             console.log(12345);
