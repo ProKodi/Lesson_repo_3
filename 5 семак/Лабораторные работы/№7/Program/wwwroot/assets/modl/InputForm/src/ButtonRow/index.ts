@@ -2,8 +2,30 @@
 
 
 
+export * from "./Buttons.ts"
 
 
+import {Button} from "./Buttons.ts"
+ 
+
+/// Класс реализующий работу строки кнопок
+export class RowButton{
+    public readonly row_bt = $(`<div id = "row_bt"></div>`);
+
+
+    public constructor(readonly parent: JQuery<HTMLElement>){
+        parent.append(this.row_bt);
+    }
+
+    public append(button: Button){
+        
+    }
+
+}
+(window as any).RowButton = RowButton;
+
+
+/*
 
 export * from "./HeaderTableInput.ts"
 export * from "./BodyTableInput.ts"
@@ -43,3 +65,5 @@ export class TableInput{
 }
 
 (window as any).TableInput = TableInput;
+
+*/

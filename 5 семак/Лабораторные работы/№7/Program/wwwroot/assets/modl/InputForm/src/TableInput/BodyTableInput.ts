@@ -2,6 +2,8 @@
 
 
 
+import $ from "jquery";
+
 export class BodyTableInput{
     // Тело таблицы
     public readonly table_body = $(`<tbody id="table-body"></tbody>`);
@@ -12,12 +14,8 @@ export class BodyTableInput{
 
     public append_row(label: string, id: string, type: string = "text"): void{
         let row_container = $("<tr></tr>");
-        row_container.append($(`<td><p>${label}</p></td>`).css({
-            width: "20%",
-        }));
-        row_container.append($(`<td><input type = ${type} id = ${id}></td>`).css({
-            width: "80%",
-        }));
+        row_container.append($(`<td class="first_col"><p>${label}</p></td>`));
+        row_container.append($(`<td class="second_col"><input type = ${type} id = ${id}></td>`));
         
         this.table_body.append(row_container);
     }

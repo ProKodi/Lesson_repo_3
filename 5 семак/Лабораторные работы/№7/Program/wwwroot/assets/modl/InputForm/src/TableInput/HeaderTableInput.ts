@@ -2,6 +2,9 @@
 
 
 
+import $ from "jquery";
+
+
 /// Класс реализующий функционал заголовка таблицы
 export class HeaderTableInput{
     // Заголовок таблицы

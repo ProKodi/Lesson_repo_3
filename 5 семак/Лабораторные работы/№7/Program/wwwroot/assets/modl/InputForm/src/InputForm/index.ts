@@ -2,5 +2,5 @@
 
 
 
-export * from "./HeaderForm.js"
-export * from "./BaseInputForm.js"
+export * from "./HeaderForm.ts"
+export * from "./BaseInputForm.ts"

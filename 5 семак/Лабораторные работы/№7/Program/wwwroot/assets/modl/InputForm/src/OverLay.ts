@@ -2,6 +2,9 @@
 
 
 
+import $ from "jquery";
+
+
 /// Класс реализующий функционал оверлея
 export class OverLay{
     // Создаем оверлей 
@@ -40,7 +43,7 @@ export class OverLay{
 
     /// Показ оверлея
     public show(): Promise<void>{
-        return new Promise((resolve) => { this.overlay.css("display", "flex"); });
+        return new Promise((_) => { this.overlay.css("display", "flex"); });
     }
 }
 
