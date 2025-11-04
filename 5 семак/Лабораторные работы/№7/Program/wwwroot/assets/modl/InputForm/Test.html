@@ -3,60 +3,80 @@
 
 
 <!DOCTYPE html>
-
 <html lang="ru">
-
 <head>
-    <meta charset = "utf-8">
+    <meta charset="UTF-8">
+    <title>Lily2</title>
+
+
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src=".\dist\main.js"></script>
+
+    <script type="module"  src=".\dist\main.js" defer></script>
+    <!-- <script src="..\assets\js\cookies.js"></script> --> 
+    <!-- <script src="..\assets\js\scroll_image.js"></script> --> 
+
+
 </head>
+
 
 <body>
     <header>
     </header>
+
+
     <main>
-        <button id = "test">Тест</button>
+        <button id = "test_button">Тест</button>
     </main>
-    <footer></footer>
+
 </body>
+</html>
+
 
 <script defer>
 
-    $("#test").on("click", async function(){
-        let form_input = new TableInputForm();
+    $('#test_button').click(async function() {
 
-        form_input.data_form_header.append($(`<h1>Тут Хеадер формы(Лево)</h1>`));
-        form_input.data_form_header.append($(`<h1>Тут Хеадер формы(Центр)</h1>`), Anchor.Center);
-        form_input.data_form_header.append($(`<h1>Тут Хеадер формы(Право)</h1>`), Anchor.Right);
+        my_overlay = new TableInputForm();
+
+        my_overlay.data_form_header.append($(`<h1>Тут Хеадер формы (Лево)</h1>`) );
+        my_overlay.data_form_header.append($(`<h1>Тут Хеадер формы (центр)</h1>`), Anchor.Center);
+        my_overlay.data_form_header.append($(`<h1>Тут Хеадер формы (право)</h1>`), Anchor.Right);
+
+        my_overlay.table_form.table_head.change_first_header("Уга буга");
+
+        my_overlay.table_form.table_head.change_second_header("Хуяк хуяк");
+
+        my_overlay.table_form.table_body.append_row("ФИО1", "name", "text");
+
+        my_overlay.table_form.table_body.append_row("ФИО2", "name", "textarea");
+
+        my_overlay.table_form.table_body.append_row("ФИО3", "name", "text");
+
+        my_overlay.table_form.table_body.append_row("ФИО4", "name", "text");
         
+        my_overlay.table_form.table_body.append_row("ФИО5", "name", "text");
 
-        form_input.table_form.table_head.change_first_header(
-            $("<h1>Мой заголовок для имен</h1>")
-        );
-        form_input.table_form.table_head.change_second_header(
-            $("<h2>Мой текст для значений </h2>")
-        );
+        my_overlay.table_form.table_body.append_row("ФИО6", "name", "text");
 
-        form_input.table_form.table_body.append_row("ФИО1", "name", "text");
+        my_overlay.table_form.table_body.append_row("ФИО7", "name", "text");
 
-        form_input.table_form.table_body.append_row("ФИО2", "name", "textarea");
 
-        form_input.table_form.table_body.append_row("ФИО3", "name", "text");
 
-        form_input.table_form.table_body.append_row("ФИО4", "name", "text");
-        
-        form_input.table_form.table_body.append_row("ФИО5", "name", "text");
+        await my_overlay.show()
 
-        form_input.table_form.table_body.append_row("ФИО6", "name", "text");
 
-        form_input.table_form.table_body.append_row("ФИО7", "name", "text");
+        /*my_form = new TableForm();
 
-        
-        await form_input.show();
-    })
+        my_form.append_row("ФИО", "input_name", "text");
+        my_form.append_row("Пол", "sex", "text");
 
-</script> 
 
-</html>
+        await my_form.show()
+
+
+        console.log(123)*/
+    });
+
+
+</script>
