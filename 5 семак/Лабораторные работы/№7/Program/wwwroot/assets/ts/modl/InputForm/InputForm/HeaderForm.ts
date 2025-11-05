@@ -4,7 +4,7 @@
 
 import $ from "jquery";
 
-import * as BaseEnum from "../BaseEnum.ts";
+import * as BaseEnum from "../../BaseEnum.ts";
 
 
 /// Класс реализующий хеадер формы

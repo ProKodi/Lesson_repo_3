@@ -18,7 +18,7 @@ export class RowButton{
     }
 
     public append(button: Button){
-        
+        this.row_bt.append(button.bt);
     }
 
 }

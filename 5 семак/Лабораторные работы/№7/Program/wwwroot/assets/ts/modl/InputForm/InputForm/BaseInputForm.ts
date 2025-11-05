@@ -4,13 +4,13 @@
 
 import $ from "jquery";
 
-import {OverLay} from "../OverLay.ts";
-import {ButtonState} from "../BaseEnum.ts";
+import {OverLay} from "../../OverLay.ts";
+import {ButtonState} from "../../BaseEnum.ts";
 
 
 import {HeaderForm} from ".";
 import {TableInput} from "../TableInput";
-import {ButtonClose, ButtonClear, ButtonSave} from "../ButtonRow"
+import {ButtonClose, ButtonClear, ButtonSave} from "../ButtonRow/index.ts"
 
 
 export abstract class BaseInputForm{
