@@ -73,7 +73,7 @@ class DataBase: IDisposable{
         Parallel.ForEach(strings, (chec_str, pls) => {
             if(chec_str == null){ return; }
 
-            if(Regex.IsMatch(chec_str, pattern)){ return; }
+            if(Regex.IsMatch(chec_str.ToLower(), pattern)){ return; }
 
             throw new SQLInjection(); 
         });
