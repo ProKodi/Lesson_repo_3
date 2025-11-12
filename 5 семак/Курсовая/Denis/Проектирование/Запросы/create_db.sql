@@ -36,7 +36,7 @@ CREATE TABLE restaurants.positions (
   title VARCHAR(100) NOT NULL COMMENT 'Название должности',
   description TEXT DEFAULT NULL COMMENT 'Описание должности',
   education VARCHAR(255) DEFAULT NULL COMMENT 'Образование для должности',
-  is_dangerous BOOL DEFAULT 0 COMMENT 'Должность являеется опасной',
+  is_dangerous BOOL DEFAULT FALSE COMMENT 'Должность являеется опасной',
   PRIMARY KEY (id)
 )
 ENGINE = INNODB,
@@ -101,9 +101,9 @@ COMMENT = 'График работы';
 CREATE TABLE restaurants.range_dishes (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код блюда',
   
-  name VARCHAR(100) COMMENT "Название",
+  name VARCHAR(100) NOT NULL COMMENT "Название",
   `describe` TEXT COMMENT "Описание блюда",
-  for_children BOOL COMMENT "Пригодно для упоребления несовершенолетними",
+  for_children BOOL DEFAULT TRUE COMMENT "Пригодно для упоребления несовершенолетними",
 
   PRIMARY KEY (id)
 )
@@ -131,9 +131,9 @@ COMMENT = 'Диапазон блюд';
 CREATE TABLE restaurants.restaurants (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код ресторана',
   
-  name VARCHAR(100) COMMENT "Название",
+  name VARCHAR(100) NOT NULL COMMENT "Название",
   mark_feedback FLOAT DEFAULT 0 COMMENT "Оценка",
-  address VARCHAR(255) COMMENT "Адрес",
+  address VARCHAR(255) NOT NULL COMMENT "Адрес",
   cout_star TINYINT DEFAULT 0 COMMENT "Количество звез мишлена",
   id_schedule BIGINT UNSIGNED NOT NULL COMMENT "Код графика работы",
 
@@ -157,13 +157,36 @@ REFERENCES restaurants.schedule (id);
 Создание таблицы Работники - workers
   1) 'Код работника' - id
   2) 'ФИО' - name
-  3) 'Описание' - describe
-  4) 'Зарплата' - salary
-  5) 'Дата рождения' - birthday_date
-  6) 'ID должности' - id_positions
-  7) 'ID ресторана' - id_restaurants
+  3) 'ID должности' - id_positions
+  4) 'ID ресторана' - id_restaurants
+  5) 'Описание' - describe
+  6) 'Зарплата' - salary
+  7) 'Дата рождения' - birthday_date
 
 */
+CREATE TABLE restaurants.workers (
+  id bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код работника',
+
+  name varchar(100) NOT NULL COMMENT "ФИО",
+  id_positions bigint UNSIGNED NOT NULL COMMENT "Код должности",
+  id_restaurants bigint UNSIGNED NOT NULL COMMENT "Код ресторана",
+  `describe`  text DEFAULT NULL COMMENT "Описание",
+  salary int DEFAULT NULL COMMENT "Зарплата",
+  birthday_date date DEFAULT NULL COMMENT "Дата рождения",
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Работники';
+
+ALTER TABLE restaurants.workers
+ADD CONSTRAINT FK_workers_id_positions FOREIGN KEY (id_positions)
+REFERENCES restaurants.positions (id);
+
+ALTER TABLE restaurants.workers
+ADD CONSTRAINT FK_workers_id_restaurants FOREIGN KEY (id_restaurants)
+REFERENCES restaurants.restaurants (id);
 
 
 /* ------------ */
@@ -174,13 +197,34 @@ REFERENCES restaurants.schedule (id);
 5(ссылка 3, 4)
 Создание таблицы Позиции меню - menu_item
   1) 'Код Позиции меню' - id
-  2) 'стоимость' - cost
-  3) 'грамовка' - weight
-  4) 'ID блюда' - id_range_dishes
+  2) 'ID блюда' - id_range_dishes
+  3) 'стоимость' - cost
+  4) 'грамовка' - weight
   5) 'ID ресторана' - id_restaurants
-
-
 */
+
+CREATE TABLE restaurants.menu_item (
+  id bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код Позиции меню',
+
+  id_range_dishes bigint UNSIGNED NOT NULL COMMENT 'Код блюда',
+  cost int NOT NULL COMMENT 'стоимость',
+  weight int COMMENT 'грамовка',
+  id_restaurants bigint UNSIGNED NOT NULL COMMENT 'Код ресторана',
+  in_stock BOOL DEFAULT TRUE COMMENT 'Наличие товара',
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Позиции меню';
+
+ALTER TABLE restaurants.menu_item
+ADD CONSTRAINT FK_menu_item_id_range_dishes FOREIGN KEY (id_range_dishes)
+REFERENCES restaurants.range_dishes (id);
+
+ALTER TABLE restaurants.menu_item
+ADD CONSTRAINT FK_menu_item_id_restaurants FOREIGN KEY (id_restaurants)
+REFERENCES restaurants.restaurants (id);
 
 
 /* ------------ */
@@ -191,14 +235,23 @@ REFERENCES restaurants.schedule (id);
 6
 Создание таблицы Клиенты - clients
   1) 'Код клиента' - id
-  2) 'Дата рождения' - birthday_date
-  3) 'ФИО' - name
-  4) 'Дата регистрации' - date_registration
-  5) 'email' - email
-
-
+  2) 'ФИО' - name
+  3) 'email' - email
+  4) 'Дата рождения' - birthday_date
+  5) 'Дата регистрации' - date_registration
 */
-
+CREATE TABLE restaurants.clients (
+  id bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код клиента',
+  name varchar(100) NOT NULL COMMENT 'ФИО',
+  email varchar(255) NOT NULL COMMENT 'email',
+  birthday_date date DEFAULT NULL COMMENT 'Дата рождения',
+  date_registration date DEFAULT NULL COMMENT 'Дата регистрации',
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Клиенты';
 
 /* ------------ */
 
@@ -209,13 +262,26 @@ REFERENCES restaurants.schedule (id);
 Создание таблицы Заказы - orders
   1) 'Код заказа' - id
   2) 'название' - name
-  3) 'Статус заказа' - state
-  4) 'Дата заказа' - date
-  5) 'ID клиента' - id_clients
-
-
+  3) 'ID клиента' - id_clients
+  4) 'Статус заказа' - state
+  5) 'Дата заказа' - date
 */
+CREATE TABLE restaurants.orders (
+  id bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код заказа',
+  name varchar(100) COMMENT 'название',
+  id_clients bigint UNSIGNED NOT NULL COMMENT 'Код клиента',
+  state BOOL DEFAULT FALSE COMMENT 'Статус заказа',
+  date date NOT NULL COMMENT 'Дата заказа',
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Заказы';
 
+ALTER TABLE restaurants.orders
+ADD CONSTRAINT FK_orders_id_clients FOREIGN KEY (id_clients)
+REFERENCES restaurants.clients (id);
 
 /* ------------ */
 
@@ -225,8 +291,22 @@ REFERENCES restaurants.schedule (id);
 Создание таблицы Заказаные блюда - order_dish
   1) 'Код заказа' - id_orders
   2) 'Код Позиции меню' - id_menu_item
-
 */
+CREATE TABLE restaurants.order_dish (
+  id_orders bigint UNSIGNED NOT NULL,
+  id_menu_item bigint UNSIGNED NOT NULL
+)
+ENGINE = INNODB,
+CHARACTER SET utf8mb4,
+COLLATE utf8mb4_0900_ai_ci,
+COMMENT = 'Заказаные блюда';
 
+ALTER TABLE restaurants.order_dish
+ADD CONSTRAINT FK_order_dish_id_menu_item FOREIGN KEY (id_menu_item)
+REFERENCES restaurants.menu_item (id);
+
+ALTER TABLE restaurants.order_dish
+ADD CONSTRAINT FK_order_dish_id_orders FOREIGN KEY (id_orders)
+REFERENCES restaurants.orders (id);
 
 /* ------------ */
