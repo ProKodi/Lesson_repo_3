@@ -1,2 +1,2 @@
-dotnet new web
+dotnet new winforms
 dotnet add package MySql.Data

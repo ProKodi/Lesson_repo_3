@@ -68,7 +68,7 @@ class DataBase: IDisposable{
             ^([\w\sа-я\.]+[@]{0,1}[\w\sа-я\.]+)$
         */
 
-        string pattern = @"^([\w\sа-я\.]+[@]{0,1}[\w\sа-я\.]+)$"; 
+        string pattern = @"^([\w\sа-я\.]*[@]{0,1}[\w\sа-я\.]*)$"; 
 
         Parallel.ForEach(strings, (chec_str, pls) => {
             if(chec_str == null){ return; }
