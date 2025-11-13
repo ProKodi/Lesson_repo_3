@@ -144,3 +144,65 @@ SELECT clients.name, COUNT(*) FROM orders
 
 
 /* --------- 14 ------------- */
+SELECT clients.name, SUM(menu_item.cost)  FROM order_dish
+  JOIN orders 
+  ON order_dish.id_orders = orders.id
+
+  JOIN clients 
+  ON orders.id_clients = clients.id
+
+  JOIN menu_item 
+  ON order_dish.id_menu_item = menu_item.id
+
+  GROUP BY clients.id
+;
+
+
+/* --------- 15 ------------- */
+SELECT * FROM workers
+  WHERE salary >= (
+    SELECT AVG(salary) FROM workers AS avg_sal
+      WHERE avg_sal.id_restaurants =  workers.id_restaurants
+      GROUP BY avg_sal.id_restaurants
+  )
+;
+
+
+/* --------- 16 ------------- */
+SELECT 
+   CASE
+       when WEEKDAY(date) = 0 THEN 'Понедельник'
+       when WEEKDAY(date) = 1 THEN 'Вторник'
+       when WEEKDAY(date) = 2 THEN 'Среда'
+       when WEEKDAY(date) = 3 THEN 'Четверг'
+       when WEEKDAY(date) = 4 THEN 'Пятница'
+       when WEEKDAY(date) = 5 THEN 'Суббота'
+       WHEN WEEKDAY(date) = 6 THEN 'Воскресенье'
+       ELSE null
+   END AS NameDay,
+   COUNT(*)
+FROM orders
+   GROUP BY NameDay
+;
+
+
+/* --------- 17 ------------- */
+SELECT orders.name, COUNT(*) AS CnOr  FROM order_dish
+  JOIN orders 
+  ON order_dish.id_orders = orders.id
+  
+  GROUP BY id_orders
+  HAVING CnOr > 1
+;
+
+
+/* --------- 18 ------------- */
+SELECT orders.name, SUM(menu_item.cost) FROM orders
+  JOIN order_dish 
+  ON order_dish.id_orders = orders.id
+
+  JOIN menu_item 
+  ON order_dish.id_menu_item = menu_item.id
+
+  GROUP BY orders.id
+;
