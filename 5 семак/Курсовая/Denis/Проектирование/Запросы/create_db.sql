@@ -3,7 +3,7 @@
 
 
 /* Удаление базы данных Restaurants*/
-DROP DATABASE IF EXISTS restaurants; 
+DROP DATABASE IF EXISTS restaurants2; 
 /* ------------ */
 
 
@@ -11,7 +11,7 @@ DROP DATABASE IF EXISTS restaurants;
 
 /* Создание базы данных Restaurants*/
 
-CREATE DATABASE restaurants
+CREATE DATABASE restaurants2
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_0900_ai_ci;
 
@@ -200,7 +200,7 @@ REFERENCES restaurants.restaurants (id);
   2) 'ID блюда' - id_range_dishes
   3) 'стоимость' - cost
   4) 'грамовка' - weight
-  5) 'ID ресторана' - id_restaurants
+  5) 'Наличие товара' - in_stock
 */
 
 CREATE TABLE restaurants.menu_item (
@@ -209,7 +209,6 @@ CREATE TABLE restaurants.menu_item (
   id_range_dishes bigint UNSIGNED NOT NULL COMMENT 'Код блюда',
   cost int NOT NULL COMMENT 'стоимость',
   weight int COMMENT 'грамовка',
-  id_restaurants bigint UNSIGNED NOT NULL COMMENT 'Код ресторана',
   in_stock BOOL DEFAULT TRUE COMMENT 'Наличие товара',
   PRIMARY KEY (id)
 )
@@ -221,11 +220,6 @@ COMMENT = 'Позиции меню';
 ALTER TABLE restaurants.menu_item
 ADD CONSTRAINT FK_menu_item_id_range_dishes FOREIGN KEY (id_range_dishes)
 REFERENCES restaurants.range_dishes (id);
-
-ALTER TABLE restaurants.menu_item
-ADD CONSTRAINT FK_menu_item_id_restaurants FOREIGN KEY (id_restaurants)
-REFERENCES restaurants.restaurants (id);
-
 
 /* ------------ */
 
@@ -242,6 +236,7 @@ REFERENCES restaurants.restaurants (id);
 */
 CREATE TABLE restaurants.clients (
   id bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код клиента',
+
   name varchar(100) NOT NULL COMMENT 'ФИО',
   email varchar(255) NOT NULL COMMENT 'email',
   birthday_date date DEFAULT NULL COMMENT 'Дата рождения',
@@ -265,13 +260,16 @@ COMMENT = 'Клиенты';
   3) 'ID клиента' - id_clients
   4) 'Статус заказа' - state
   5) 'Дата заказа' - date
+  6) 'ID ресторана' - id_restaurants
 */
 CREATE TABLE restaurants.orders (
   id bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Код заказа',
+  
   name varchar(100) COMMENT 'название',
   id_clients bigint UNSIGNED NOT NULL COMMENT 'Код клиента',
   state BOOL DEFAULT FALSE COMMENT 'Статус заказа',
   date date NOT NULL COMMENT 'Дата заказа',
+  id_restaurants bigint UNSIGNED NOT NULL COMMENT 'Код ресторана',
   PRIMARY KEY (id)
 )
 ENGINE = INNODB,
@@ -283,6 +281,10 @@ ALTER TABLE restaurants.orders
 ADD CONSTRAINT FK_orders_id_clients FOREIGN KEY (id_clients)
 REFERENCES restaurants.clients (id);
 
+ALTER TABLE restaurants.orders
+ADD CONSTRAINT FK_orders_id_restaurants FOREIGN KEY (id_restaurants)
+REFERENCES restaurants.restaurants (id);
+
 /* ------------ */
 
 
@@ -293,8 +295,8 @@ REFERENCES restaurants.clients (id);
   2) 'Код Позиции меню' - id_menu_item
 */
 CREATE TABLE restaurants.order_dish (
-  id_orders bigint UNSIGNED NOT NULL,
-  id_menu_item bigint UNSIGNED NOT NULL
+  id_orders bigint UNSIGNED NOT NULL COMMENT 'Код заказа',
+  id_menu_item bigint UNSIGNED NOT NULL COMMENT 'Код Позиции меню'
 )
 ENGINE = INNODB,
 CHARACTER SET utf8mb4,
