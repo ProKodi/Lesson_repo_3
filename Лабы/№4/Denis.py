@@ -3,14 +3,15 @@
 
 
 # pip install ortools
-from ortools.linear_solver import pywraplp
+from ortools.linear_solver.pywraplp import *
+from ortools.linear_solver.find_orders import *
 
 
 def solve_transport(costs, supply, demand):
     m = len(supply) # число поставщиков
     n = len(demand)  # число потребителей
 
-    solver = pywraplp.Solver.CreateSolver("GLOP")  # LP-решатель
+    solver = Solver.CreateSolver("GLOP")  # LP-решатель
 
     # --- Переменные x[i][j] ---
     x = [[solver.NumVar(0, solver.infinity(), f'x[{i},{j}]')
@@ -31,12 +32,13 @@ def solve_transport(costs, supply, demand):
 
     status = solver.Solve()
 
-    if status == pywraplp.Solver.OPTIMAL:
+    if status == Solver.OPTIMAL:
         print("Оптимальное решение найдено")
         print("Минимальная стоимость:", solver.Objective().Value())
         print("\nОптимальный план перевозок:")
+        res  = find_orders(x)
         for i in range(m):
-            print([x[i][j].solution_value() for j in range(n)])
+            print(res[i])
     else:
         print("Оптимальное решение не найдено")
 

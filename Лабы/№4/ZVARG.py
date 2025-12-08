@@ -59,12 +59,6 @@ def find_optimal_nuts(costs, supply, demand):
     print("✅ Оптимальное решение найдено\n")
     print("Минимальная стоимость перевозок:", solver.Objective().Value(), "\n")
 
-    # === Вывод таблицы результата ===
-    print("Оптимальный план перевозок (матрица):")
-    result = [[x[i][j].solution_value() for j in range(n)] for i in range(m)]
-
-    for row in result:
-        print("  ".join(f"{v:8.2f}" for v in row))
 
 
 # ==== Пример задачи ====
