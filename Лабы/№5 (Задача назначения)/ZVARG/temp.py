@@ -3,7 +3,7 @@
 
 
 # pip install ortools
-from ortools.linear_solver import pywraplp
+from ortools.linear_solver import *
 
 
 def solve_assignment(cost_matrix):
@@ -53,6 +53,13 @@ def solve_assignment(cost_matrix):
                     f"Исполнитель {i + 1} → Работа {j + 1} "
                     f"(стоимость {cost_matrix[i][j]})"
                 )
+    
+    for i in showorctols(status):
+        for ii in i:
+            print(ii, end="\t")
+        print()
+        
+    
 
 
 # ===== Пример =====
@@ -68,13 +75,3 @@ costs = [
 solve_assignment(costs)
 
 
-'''
-3, 6, 4, 6, 4, 2
-1, 3, 2, 1, 3, 5
-5, 5, 5, 5, 1, 4
-4, 5, 6, 7, 1, 9
-2, 6, 6, 6, 1, 7
-5, 6, 4, 5, 1, 5
-
-
-'''

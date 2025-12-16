@@ -3,7 +3,7 @@
 
 
 # pip install ortools
-from ortools.linear_solver import pywraplp
+from ortools.linear_solver import *
 
 
 def solve_assignment(costs):
@@ -37,11 +37,13 @@ def solve_assignment(costs):
     print("Оптимальное назначение найдено")
     print("Минимальная стоимость:", solver.Objective().Value(), "\n")
 
-    print("Назначения (исполнитель → работа):")
-    for i in range(n):
-        for j in range(n):
-            if x[i][j].solution_value() == 1:
-                print(f"Исполнитель {i + 1} → Работа {j + 1} (стоимость {costs[i][j]})")
+    for i in getroads(status):
+        print(f"Исполнитель: {i[0]}; Работа: {i[1]} (стоимость {costs[i[0] - 1][i[1] - 1]})")
+                
+    for i in showorctols(status):
+        for ii in i:
+            print(ii, end="\t")
+        print()
 
 
 costs = [
