@@ -25,7 +25,7 @@ def solve_tsp(distance_matrix):
     transit_callback_index = routing.RegisterTransitCallback(distance_callback)
     routing.SetArcCostEvaluatorOfAllVehicles(transit_callback_index)
 
-    # ПРАВИЛЬНЫЕ параметры поиска
+    # параметры поиска
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
     search_parameters.first_solution_strategy = (
         routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
@@ -64,11 +64,11 @@ def solve_tsp(distance_matrix):
 
 
 distance_matrix = [
-    [0,  30, 46, 19, 13],
-    [10, 0,  19, 3, 13],
-    [21, 15, 0, 35, 11],
-    [26, 22, 30, 0, 15],
-    [3,  4,  3,  2, 0]
+    [-1,  30, 46, 19, 13],
+    [10, -1,  19, 3, 13],
+    [21, 15, -1, 35, 11],
+    [26, 22, 30, -1, 15],
+    [3,  4,  3,  2, -1]
 ]
 
 solve_tsp(distance_matrix)
