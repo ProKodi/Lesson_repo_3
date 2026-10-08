@@ -1,0 +1,114 @@
+<mxfile host="app.diagrams.net" pages="2">
+  <diagram name="Page-1" id="KT2PAmvB0h4tteQJ88BY">
+    <mxGraphModel dx="820" dy="2230" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-1" parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.externalEntity;flipV=1;legacyAnchorPoints=0;flipH=1;" value="Внешняя сущность" vertex="1">
+          <mxGeometry height="80" width="140" x="60" y="-370" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-2" parent="JAVKocVwqi6DWk6TW-sG-1" style="autosize=1;part=1;resizable=0;strokeColor=inherit;fillColor=inherit;gradientColor=inherit;" value="Id" vertex="1">
+          <mxGeometry height="20" relative="1" width="20" x="80" y="80" as="geometry">
+            <mxPoint x="15" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-3" parent="1" style="html=1;dashed=0;whiteSpace=wrap;" value="1. Процесс&lt;div&gt;1.1 Подсистема&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="100" x="410" y="-350" as="geometry" />
+        </mxCell>
+        <object label="D1&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp; Накопитель данных" id="JAVKocVwqi6DWk6TW-sG-4">
+          <mxCell parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];" vertex="1">
+            <mxGeometry height="30" width="220" x="530" y="-130" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-5" edge="1" parent="1" source="JAVKocVwqi6DWk6TW-sG-1" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=35;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="JAVKocVwqi6DWk6TW-sG-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="390" y="40" as="sourcePoint" />
+            <mxPoint x="440" y="-10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-6" connectable="0" parent="JAVKocVwqi6DWk6TW-sG-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="поток данных" vertex="1">
+          <mxGeometry relative="1" x="-0.2952" as="geometry">
+            <mxPoint x="26" y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Служба доставки" vertex="1">
+          <mxGeometry height="180" width="245" x="330" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-8" parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.externalEntity;flipV=1;legacyAnchorPoints=0;flipH=1;" value="Клиент" vertex="1">
+          <mxGeometry height="80" width="140" x="70" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-9" parent="JAVKocVwqi6DWk6TW-sG-8" style="autosize=1;part=1;resizable=0;strokeColor=inherit;fillColor=inherit;gradientColor=inherit;" value="Id" vertex="1">
+          <mxGeometry height="20" relative="1" width="20" x="80" y="80" as="geometry">
+            <mxPoint x="15" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-27" edge="1" parent="1" source="JAVKocVwqi6DWk6TW-sG-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=35;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="JAVKocVwqi6DWk6TW-sG-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-10" parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.externalEntity;flipV=1;legacyAnchorPoints=0;flipH=1;" value="Оператор" vertex="1">
+          <mxGeometry height="80" width="140" x="70" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-11" parent="JAVKocVwqi6DWk6TW-sG-10" style="autosize=1;part=1;resizable=0;strokeColor=inherit;fillColor=inherit;gradientColor=inherit;" value="Id" vertex="1">
+          <mxGeometry height="20" relative="1" width="20" x="80" y="80" as="geometry">
+            <mxPoint x="15" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-28" edge="1" parent="1" source="JAVKocVwqi6DWk6TW-sG-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=35;exitPerimeter=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="JAVKocVwqi6DWk6TW-sG-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-12" parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.externalEntity;flipV=1;legacyAnchorPoints=0;flipH=1;" value="Диспетчер" vertex="1">
+          <mxGeometry height="80" width="140" x="70" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-13" parent="JAVKocVwqi6DWk6TW-sG-12" style="autosize=1;part=1;resizable=0;strokeColor=inherit;fillColor=inherit;gradientColor=inherit;" value="Id" vertex="1">
+          <mxGeometry height="20" relative="1" width="20" x="80" y="80" as="geometry">
+            <mxPoint x="15" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-25" edge="1" parent="1" source="JAVKocVwqi6DWk6TW-sG-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=140;exitDy=45;exitPerimeter=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="JAVKocVwqi6DWk6TW-sG-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-14" parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.externalEntity;flipV=1;legacyAnchorPoints=0;flipH=1;" value="Курьер" vertex="1">
+          <mxGeometry height="80" width="140" x="660" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-15" parent="JAVKocVwqi6DWk6TW-sG-14" style="autosize=1;part=1;resizable=0;strokeColor=inherit;fillColor=inherit;gradientColor=inherit;" value="Id" vertex="1">
+          <mxGeometry height="20" relative="1" width="20" x="80" y="80" as="geometry">
+            <mxPoint x="15" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-29" edge="1" parent="1" source="JAVKocVwqi6DWk6TW-sG-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=140;exitDy=45;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="JAVKocVwqi6DWk6TW-sG-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-16" parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.externalEntity;flipV=1;legacyAnchorPoints=0;flipH=1;" value="Руководитель" vertex="1">
+          <mxGeometry height="80" width="140" x="660" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-17" parent="JAVKocVwqi6DWk6TW-sG-16" style="autosize=1;part=1;resizable=0;strokeColor=inherit;fillColor=inherit;gradientColor=inherit;" value="Id" vertex="1">
+          <mxGeometry height="20" relative="1" width="20" x="80" y="80" as="geometry">
+            <mxPoint x="15" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-18" parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.externalEntity;flipV=1;legacyAnchorPoints=0;flipH=1;" value="Администратор" vertex="1">
+          <mxGeometry height="80" width="140" x="660" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-19" parent="JAVKocVwqi6DWk6TW-sG-18" style="autosize=1;part=1;resizable=0;strokeColor=inherit;fillColor=inherit;gradientColor=inherit;" value="Id" vertex="1">
+          <mxGeometry height="20" relative="1" width="20" x="80" y="80" as="geometry">
+            <mxPoint x="15" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-26" edge="1" parent="1" source="JAVKocVwqi6DWk6TW-sG-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=35;exitPerimeter=0;entryX=0.004;entryY=0.211;entryDx=0;entryDy=0;entryPerimeter=0;" target="JAVKocVwqi6DWk6TW-sG-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="JAVKocVwqi6DWk6TW-sG-30" edge="1" parent="1" source="JAVKocVwqi6DWk6TW-sG-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=140;exitDy=45;exitPerimeter=0;entryX=0.999;entryY=0.792;entryDx=0;entryDy=0;entryPerimeter=0;" target="JAVKocVwqi6DWk6TW-sG-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="5vHCXo9aO3KRWDOEytSX" name="Page-2">
+    <mxGraphModel dx="820" dy="1130" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
